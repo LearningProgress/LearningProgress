@@ -35,7 +35,7 @@ LearningProgress uses
 * `Bootstrap <http://getbootstrap.com/>`_ 3.1.1
 * `jQuery <https://jquery.com/>`_ 1.11.0
 * `jQuery Form Plugin <http://malsup.com/jquery/form/>`_ v20140218
-
+* `Coverage.py <http://nedbatchelder.com/code/coverage/>`_ 3.7.1
 
 License
 =======

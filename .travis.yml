@@ -1,8 +1,12 @@
 language: python
 python:
-  - "3.2"
-  - "3.3"
-install: "pip install -r requirements.txt"
+  - 3.2
+  - 3.3
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
 script:
-  - "coverage run --source=learningprogress manage.py test"
-  - "coverage report -m --fail-under=100 --omit=learningprogress/wsgi.py"
+  - coverage run manage.py test
+  - coverage report --fail-under=100
+after_success:
+  - coveralls

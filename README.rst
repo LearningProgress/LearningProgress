@@ -2,6 +2,12 @@
  LearningProgress
 ==================
 
+.. image:: https://travis-ci.org/LearningProgress/LearningProgress.svg?branch=master
+   :target: https://travis-ci.org/LearningProgress/LearningProgress
+
+.. image:: https://coveralls.io/repos/LearningProgress/LearningProgress/badge.png?branch=master
+   :target: https://coveralls.io/r/LearningProgress/LearningProgress
+
 LearningProgress is a small server application based on Django for tracking
 individual learning progress on a structured curriculum. It is still under
 development.

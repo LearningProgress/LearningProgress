@@ -5,7 +5,7 @@ from django.test.client import Client
 from learningprogress.accounts.models import User
 
 
-class Create(TestCase):
+class CreateTest(TestCase):
     """
     Tests user creation via admin.
     """

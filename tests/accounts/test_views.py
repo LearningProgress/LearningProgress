@@ -6,7 +6,7 @@ from django.utils import timezone
 from learningprogress.accounts.models import User
 
 
-class Register(TestCase):
+class RegisterTest(TestCase):
     """
     Tests registration (UserCreateView).
     """
@@ -43,7 +43,7 @@ class Register(TestCase):
         self.assertFalse(User.objects.filter(username='username_mae0weiGh2eid5keejah').exists())
 
 
-class Update(TestCase):
+class UpdateTest(TestCase):
     """
     Tests update (UserUpdateView).
     """
@@ -118,7 +118,7 @@ class Update(TestCase):
         self.assertTrue(User.objects.filter(username='username_oR4aefiCei6teiyacheo').exists())
 
 
-class Delete(TestCase):
+class DeleteTest(TestCase):
     """
     Tests delete (UserDeleteView).
     """

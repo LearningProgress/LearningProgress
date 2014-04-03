@@ -8,5 +8,4 @@ class Home(TestCase):
     """
     def test_get(self):
         response = Client().get('/')
-        # TODO: Activate this test
-        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)

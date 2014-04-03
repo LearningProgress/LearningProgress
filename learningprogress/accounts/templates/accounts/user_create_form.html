@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+
+{% load bootstrap3 %}
+{% load i18n %}
+
+{% block title %}{{ block.super }} – {% trans 'Register' %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans 'Register' %}</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <input class="btn btn-primary" type="submit" value="{% trans 'Register and log in' %}">
+        {% endbuttons %}
+    </form>
+{% endblock %}

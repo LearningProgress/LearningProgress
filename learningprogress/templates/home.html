@@ -1,0 +1,75 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang={{ LANGUAGE_CODE }}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% trans 'LearningProgress' %}{% endblock %}</title>
+    <link href="{{ STATIC_URL }}css/bootstrap-3.1.1.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <header>
+            <nav class="navbar navbar-default">
+                <h1 class="sr-only">{% trans 'Registration and authentication' %}</h1>
+                <div class="container-fluid">
+                    {% if user.is_authenticated %}
+                        <p class="navbar-text ">{% trans 'User' %}: {{ user }}</p>
+                    {% endif %}
+                    <ul class="nav nav-pills navbar-nav navbar-right">
+                        {% if not user.is_authenticated %}
+                            <li><a href="{% url 'user_create' %}">{% trans 'Register' %}</a></li>
+                            <li><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>
+                            </ul>
+                        {% else %}
+                            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                            {% if user.is_staff %}
+                                <li><a href="{% url 'admin:index' %}">{% trans 'Administration' %}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+            <div class="page-header">
+                <h1>{% trans 'LearningProgress' %} <small>2.0</small></h1>
+            </div>
+            <nav>
+                <h1 class="sr-only">{% trans 'Navigation' %}</h1>
+                <ul class="nav nav-tabs">
+                    {% if user.is_authenticated %}
+                        <li {% if view.self_pattern_name == 'home' %}class="active"{% endif %}>
+                            <a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                        </li>
+                        <li {% if view.self_pattern_name == 'section_list' or view.self_pattern_name == 'usersectionrelation_update' %}class="active"{% endif %}>
+                            <a href="{% url 'section_list' %}">{% trans 'My learning progress' %}</a>
+                        </li>
+                        <li {% if view.self_pattern_name == 'mockexam_form' or view.self_pattern_name == 'mockexam_delete'%}class="active"{% endif %}>
+                            <a href="{% url 'mockexam_form' %}">{% trans 'My mock exams' %}</a>
+                        </li>
+                        <li {% if view.self_pattern_name == 'user_update' %}class="active"{% endif %}>
+                            <a href="{% url 'user_update' %}">{% trans 'Change user data' %}</a>
+                        </li>
+                    {% else %}
+                        <li class="active"><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                    {% endif %}
+               </ul>
+            </nav>
+        </header>
+        <main>
+            <article>
+                {% block content %}
+                    <h1>{% trans 'Instructions' %}</h1>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                {% endblock %}
+            </article>
+        </main>
+        <footer>
+            <div class="container-fluid">
+                <hr>
+                <p>Copyright © 2014 Authors of <a href="https://github.com/LearningProgress">LearningProgress</a></p>
+            </div>
+        </footer>
+    </div>
+    {% block script %}{% endblock %}
+</body>
+</html>

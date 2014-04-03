@@ -16,7 +16,7 @@ class HomeView(TemplateView):
 urlpatterns = patterns(
     '',
     url(r'^$', HomeView.as_view(), name='home'),
-    #url(r'^accounts/', include('leo.accounts.urls')),
+    url(r'^accounts/', include('learningprogress.accounts.urls')),
     #url(r'^learning_progress/', include('leo.learning_progress.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

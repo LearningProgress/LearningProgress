@@ -1,0 +1,10 @@
+{% extends 'home.html' %}
+
+{% load i18n %}
+
+{% block title %}{{ block.super }} – {% trans 'Section' %}: {{ section }}{% endblock %}
+
+{% block content %}
+    <h1>{% trans 'Section' %}: {{ section }}</h1>
+    {% include 'progress/usersectionrelation_form_snippet.html' %}
+{% endblock %}

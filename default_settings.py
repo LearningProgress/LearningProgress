@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'mptt',
     'bootstrap3',
     'learningprogress.accounts',
-    #'learningprogress.learning_progress',
+    'learningprogress.progress',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+
+{% load bootstrap3 %}
+{% load i18n %}
+
+{% block title %}{{ block.super }} – {% trans 'Delete mock exam' %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans 'Delete mock exam' %}</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <p>
+                {{ mockexam.branch }}
+                {% blocktrans with date=mockexam.date count mark=mockexam.mark %}
+                    {{ mark }} Point ({{ date }})
+                {% plural %}
+                    {{ mark }} Points ({{ date }})
+                {% endblocktrans %}
+            </p>
+            <p>{% trans 'Are you sure you want to delete this mock exam?' %}</p>
+        </div>
+        {% buttons %}
+            <input class="btn btn-danger" type="submit" value="{% trans 'Confirm' %}">
+            <a class="btn btn-default" href="{% url 'mockexam_form' %}">{% trans 'Back' %}</a>
+        {% endbuttons %}
+    </form>
+{% endblock %}

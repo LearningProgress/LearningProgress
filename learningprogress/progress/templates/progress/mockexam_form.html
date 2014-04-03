@@ -1,0 +1,45 @@
+{% extends 'home.html' %}
+
+{% load bootstrap3 %}
+{% load i18n %}
+{% load learning_progress_extras %}
+
+{% block title %}{{ block.super }} – {% trans 'My mock exams' %}{% endblock %}
+
+{% block content %}
+    <h1 class="sr-only">{% trans 'My mock exams' %}</h1>
+    <section>
+        <h1>{% trans 'Previous mock exams' %}</h1>
+        {% regroup mockexam_list by branch as mockexam_grouped_list %}
+        {% for branch in mockexam_grouped_list %}
+            <dl class="dl-horizontal">
+            {% for mockexam in branch.list %}
+                <dt>{{ mockexam.branch }}</dt>
+                <dd>
+                    {% blocktrans with date=mockexam.date count mark=mockexam.mark %}
+                        {{ mark }} Point ({{ date }})
+                    {% plural %}
+                        {{ mark }} Points ({{ date }})
+                    {% endblocktrans %}
+                    <a class="glyphicon glyphicon-remove" href="{% url 'mockexam_delete' mockexam.pk %}"></a>
+                </dd>
+            {% endfor %}
+            <dt>{% trans 'Average' %}</dt>
+            <dd>{% branch_average branch.grouper %} {% trans 'Points' %}</dd>
+            </dl>
+        {% empty %}
+            <p>{% trans 'No mock exams available' %}</p>
+        {% endfor %}
+    </section>
+    <section>
+        <h1>{% trans 'New mock exam' %}</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <input class="btn btn-primary" type="submit" value="{% trans 'Save' %}">
+                <input class="btn btn-default" type="reset" value="{% trans 'Reset' %}">
+            {% endbuttons %}
+        </form>
+    </section>
+{% endblock %}

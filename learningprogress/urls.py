@@ -17,6 +17,6 @@ urlpatterns = patterns(
     '',
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^accounts/', include('learningprogress.accounts.urls')),
-    #url(r'^learning_progress/', include('leo.learning_progress.urls')),
+    url(r'^progress/', include('learningprogress.progress.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -1,0 +1,84 @@
+{% extends 'home.html' %}
+
+{% load i18n %}
+{% load mptt_tags %}
+{% load learning_progress_extras %}
+
+{% block title %}{{ block.super }} – {% trans 'My learning progress' %}{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>{% trans 'My learning progress' %}</h1>
+        {% for progress_dict in user_learning_progress reversed %}
+            <span class="glyphicon glyphicon-{{ progress_dict.css_glyphicon }}"></span> {{ progress_dict.text }}
+            <div class="progress">
+                <div class="progress-bar progress-bar-{{ progress_dict.css_progress_bar }}" style="width:{{ progress_dict.value }}%;">
+                    {{ progress_dict.value }} %
+                </div>
+            </div>
+        {% endfor %}
+    </header>
+    <ul class="list-unstyled">
+        {% recursetree section_list %}
+            <li class="">
+                {% if not node.is_leaf_node %}
+                    {{ node.name }}
+                    <ul style="list-style-type:none; padding-left:2em;">
+                        {{ children }}
+                    </ul>
+                {% else %}
+                    <a class="section-node" href="{% url 'usersectionrelation_update' node.pk %}">
+                        {{ node.name }}
+                    </a>
+                    <span class="glyphicon glyphicon-{% section_progress_icon node %}"></span>
+                {% endif %}
+            </li>
+        {% endrecursetree %}
+    </ul>
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{{ STATIC_URL }}js/jquery-1.11.0.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.form.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-3.1.1.min.js"></script>
+    <script>
+        $('a.section-node').click(function () {
+            var tag = $(this);
+            var url = tag.attr('href');
+            $.get(url, function (data) {
+                tag.popover({
+                    trigger: 'manual',
+                    placement: 'auto',
+                    html: true,
+                    content : function () {
+                        return data.html;
+                    }
+                }).popover('show');
+                $('button.close', tag.next()).click(function () {
+                    tag.popover('hide');
+                });
+                $('a.close-popover', tag.next()).click(function () {
+                    tag.popover('hide');
+                    return false;
+                });
+                $('form', tag.next()).submit(function () {
+                    var querystring = $(this).formSerialize()
+                    $.post(url, querystring, function (data) {
+                        if (data.form_errors) {
+                            var form_errors_string = '';
+                            for (var error in data.form_errors) {
+                                form_errors_string = form_errors_string + ' ' + error;
+                            }
+                            alert('Form error in' + form_errors_string);
+                        } else {
+                            location.reload();
+                        };
+                    });
+                    return false;
+                });
+            });
+            return false;
+        })
+    </script>
+{% endblock %}

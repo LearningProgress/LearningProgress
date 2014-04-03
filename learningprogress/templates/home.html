@@ -42,8 +42,8 @@
                         <li {% if view.self_pattern_name == 'section_list' or view.self_pattern_name == 'usersectionrelation_update' %}class="active"{% endif %}>
                             <a href="{% url 'section_list' %}">{% trans 'My learning progress' %}</a>
                         </li>
-                        <li {% if view.self_pattern_name == 'mock_exams' or view.self_pattern_name == 'mock_exam_delete'%}class="active"{% endif %}>
-                            <a href="{% url 'mock_exams' %}">{% trans 'My mock exams' %}</a>
+                        <li {% if view.self_pattern_name == 'mockexam_form' or view.self_pattern_name == 'mockexam_delete'%}class="active"{% endif %}>
+                            <a href="{% url 'mockexam_form' %}">{% trans 'My mock exams' %}</a>
                         </li>
                         <li {% if view.self_pattern_name == 'user_update' %}class="active"{% endif %}>
                             <a href="{% url 'user_update' %}">{% trans 'Change user data' %}</a>

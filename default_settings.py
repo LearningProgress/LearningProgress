@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'mptt',
     'bootstrap3',
-    #'learningprogress.accounts',
+    'learningprogress.accounts',
     #'learningprogress.learning_progress',
 )
 

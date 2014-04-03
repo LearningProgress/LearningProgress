@@ -1,0 +1,20 @@
+{% extends 'home.html' %}
+
+{% load bootstrap3 %}
+{% load i18n %}
+
+{% block title %}{{ block.super }} – {% trans 'Delete user' %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans 'Delete user' %}</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <p>{% trans 'Are you sure you want to delete yourself?' %}</p>
+        </div>
+        {% buttons %}
+            <input class="btn btn-danger" type="submit" value="{% trans 'Confirm' %}">
+            <a class="btn btn-default" href="{% url 'user_update' %}">{% trans 'Back' %}</a>
+        {% endbuttons %}
+    </form>
+{% endblock %}

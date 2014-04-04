@@ -1,0 +1,6 @@
+[run]
+branch = false
+source = learningprogress
+
+[report]
+omit = learningprogress/wsgi.py

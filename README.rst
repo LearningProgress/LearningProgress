@@ -2,10 +2,10 @@
  LearningProgress
 ==================
 
-.. image:: https://travis-ci.org/LearningProgress/LearningProgress.svg?branch=master
+.. image:: https://img.shields.io/travis/LearningProgress/LearningProgress.svg
    :target: https://travis-ci.org/LearningProgress/LearningProgress
 
-.. image:: https://coveralls.io/repos/LearningProgress/LearningProgress/badge.png?branch=master
+.. image:: https://img.shields.io/coveralls/LearningProgress/LearningProgress.svg
    :target: https://coveralls.io/r/LearningProgress/LearningProgress
 
 LearningProgress is a small server application based on Django for tracking
@@ -41,6 +41,7 @@ LearningProgress uses
 * `Bootstrap <http://getbootstrap.com/>`_ 3.1.1
 * `jQuery <https://jquery.com/>`_ 1.11.0
 * `jQuery Form Plugin <http://malsup.com/jquery/form/>`_ v20140218
+* `CKEditor <http://ckeditor.com/>`_ 4.3.4
 * `Coverage.py <http://nedbatchelder.com/code/coverage/>`_ 3.7.1
 
 License

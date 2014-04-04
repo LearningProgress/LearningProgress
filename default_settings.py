@@ -42,8 +42,7 @@ INSTALLED_APPS = (
     'mptt',
     'bootstrap3',
     'learningprogress.accounts',
-    'learningprogress.progress',
-)
+    'learningprogress.progress')
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

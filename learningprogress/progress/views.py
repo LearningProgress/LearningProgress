@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.core.context_processors import csrf
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
@@ -26,7 +27,7 @@ def get_progress_info(index, info):
             'css_glyphicon': 'eye-open',
             'css_progress_bar': 'warning'},
         2: {'text': progress_choices[2],
-            'css_glyphicon': 'adjust',
+            'css_glyphicon': 'wrench',
             'css_progress_bar': 'info'},
         3: {'text': progress_choices[3],
             'css_glyphicon': 'ok',
@@ -107,6 +108,7 @@ class UserSectionRelationUpdateView(FormView):
             form = self.get_form(form_class)
             context = self.get_context_data(form=form)
             context.update(csrf(self.request))
+            context['STATIC_URL'] = settings.STATIC_URL
             html = render_to_string('progress/usersectionrelation_form_snippet.html', context)
             html = '<p><button type="button" class="close" aria-hidden="true">&times;</button></p>' + html
             response = self.render_to_json_response({'html': html})

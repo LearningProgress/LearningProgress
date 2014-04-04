@@ -2,11 +2,14 @@
  LearningProgress
 ==================
 
-.. image:: https://img.shields.io/travis/LearningProgress/LearningProgress.svg
+.. image:: https://img.shields.io/travis/LearningProgress/LearningProgress.svg?
    :target: https://travis-ci.org/LearningProgress/LearningProgress
 
-.. image:: https://img.shields.io/coveralls/LearningProgress/LearningProgress.svg
+.. image:: https://img.shields.io/coveralls/LearningProgress/LearningProgress.svg?
    :target: https://coveralls.io/r/LearningProgress/LearningProgress
+
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg?
+   :target: http://opensource.org/licenses/MIT
 
 LearningProgress is a small server application based on Django for tracking
 individual learning progress on a structured curriculum. It is still under
@@ -43,6 +46,7 @@ LearningProgress uses
 * `jQuery Form Plugin <http://malsup.com/jquery/form/>`_ v20140218
 * `CKEditor <http://ckeditor.com/>`_ 4.3.4
 * `Coverage.py <http://nedbatchelder.com/code/coverage/>`_ 3.7.1
+
 
 License
 =======

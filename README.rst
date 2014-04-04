@@ -2,10 +2,10 @@
  LearningProgress
 ==================
 
-.. image:: https://travis-ci.org/LearningProgress/LearningProgress.svg?branch=master
+.. image:: https://img.shields.io/travis/LearningProgress/LearningProgress.svg
    :target: https://travis-ci.org/LearningProgress/LearningProgress
 
-.. image:: https://coveralls.io/repos/LearningProgress/LearningProgress/badge.png?branch=master
+.. image:: https://img.shields.io/coveralls/LearningProgress/LearningProgress.svg
    :target: https://coveralls.io/r/LearningProgress/LearningProgress
 
 LearningProgress is a small server application based on Django for tracking

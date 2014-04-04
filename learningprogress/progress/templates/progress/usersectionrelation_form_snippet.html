@@ -15,3 +15,18 @@
         <a class="btn btn-default close-popover" href="{% url 'section_list' %}">{% trans 'Back' %}</a>
     {% endbuttons %}
 </form>
+
+<script src="{{ STATIC_URL }}ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace(
+        'id_comment',
+        {toolbar: [
+            ['Bold', 'Italic', 'Underline', 'Strike', '-',
+             'NumberedList', 'BulletedList', 'TextColor', 'BGColor', '-',
+             'Undo', 'Redo', 'RemoveFormat', '-',
+              'Source'
+            ]
+         ]
+        }
+    );
+</script>

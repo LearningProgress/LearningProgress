@@ -63,7 +63,10 @@
                     return false;
                 });
                 $('form', tag.next()).submit(function () {
-                    var querystring = $(this).formSerialize()
+                    for (instance in CKEDITOR.instances) {
+                        CKEDITOR.instances[instance].updateElement();
+                    };
+                    var querystring = $(this).formSerialize();
                     $.post(url, querystring, function (data) {
                         if (data.form_errors) {
                             var form_errors_string = '';

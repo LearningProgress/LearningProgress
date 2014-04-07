@@ -28,7 +28,7 @@ Run development version
     $ source .virtualenv/bin/activate
     $ pip install -r requirements.txt
     $ python manage.py syncdb  # Prompts for input some superuser data.
-    $ python manage.py loaddata extras/example-data.json
+    $ python manage.py loaddata extras/example-data-de.json
     $ python manage.py runserver
 
 

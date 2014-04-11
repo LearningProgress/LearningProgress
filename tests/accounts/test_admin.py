@@ -56,6 +56,6 @@ class CreateTest(TestCase):
         self.assertTemplateUsed(response, 'admin/login.html')
         user.is_staff = True
         user.save()
-        response = client.get(reverse('admin:accounts_user_changelist'))
-        self.assertTemplateUsed(response, 'admin/change_list.html')
-        self.assertEqual(response.status_code, 200)
+        response = client.get(reverse('admin:index'))
+        self.assertTemplateUsed(response, 'admin/index.html')
+        self.assertContains(response, 'Accounts')

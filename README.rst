@@ -40,12 +40,14 @@ LearningProgress uses
 * `Python <https://www.python.org/>`_ 3.x
 * `Django <https://www.djangoproject.com/>`_ 1.6.x
 * `django-mptt <https://github.com/django-mptt/django-mptt/>`_ 0.6.0
+* `Constance <https://github.com/comoga/django-constance/>`_ 0.6
+* `django-picklefield <https://github.com/gintas/django-picklefield>`_ 0.3.1
+* `Six <http://pythonhosted.org/six/>`_ 1.6.1
 * `django-bootstrap3 <https://github.com/dyve/django-bootstrap3/>`_ 3.2.x
 * `Bootstrap <http://getbootstrap.com/>`_ 3.1.1
 * `jQuery <https://jquery.com/>`_ 1.11.0
 * `jQuery Form Plugin <http://malsup.com/jquery/form/>`_ v20140218
 * `CKEditor <http://ckeditor.com/>`_ 4.3.4
-* `Coverage.py <http://nedbatchelder.com/code/coverage/>`_ 3.7.1
 
 
 License

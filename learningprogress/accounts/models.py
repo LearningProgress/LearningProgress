@@ -13,3 +13,9 @@ class User(AbstractUser):
         help_text=ugettext_lazy(
             'An integer with five digets. The first four digets represent the '
             'year, the last diget (1 or 2) represents the season.'))
+
+    def has_perm(self, perm, obj=None):
+        """
+        Returns always True because we won't use Django's permission system.
+        """
+        return True

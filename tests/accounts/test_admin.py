@@ -43,3 +43,19 @@ class CreateTest(TestCase):
              'exam': '20082',
              '_save': ''})
         self.assertContains(response, text='<p class="errornote">')
+
+    def test_get_using_staff_account(self):
+        user = User.objects.create_user(
+            username='username_eipohShied2xaeth4Eeh',
+            password='password_ahxoog6nu7eer1aiSaif')
+        client = Client()
+        client.login(
+            username='username_eipohShied2xaeth4Eeh',
+            password='password_ahxoog6nu7eer1aiSaif')
+        response = client.get(reverse('admin:accounts_user_changelist'))
+        self.assertTemplateUsed(response, 'admin/login.html')
+        user.is_staff = True
+        user.save()
+        response = client.get(reverse('admin:accounts_user_changelist'))
+        self.assertTemplateUsed(response, 'admin/change_list.html')
+        self.assertEqual(response.status_code, 200)

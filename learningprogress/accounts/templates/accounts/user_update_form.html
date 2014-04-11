@@ -7,6 +7,7 @@
 
 {% block content %}
     <h1>{% trans 'Change user data' %}</h1>
+    <p>{% trans 'If you enter a valid email address, you will be able to reset your password if you have forgotten it.' %}</p>
     <form method="post" action="">
         {% csrf_token %}
         {% bootstrap_form form %}

@@ -35,8 +35,14 @@ class UserCreateForm(forms.ModelForm):
     """
     A form for creating new users. Includes repeated password fields.
     """
-    password1 = forms.CharField(label=ugettext_lazy('Password'), widget=forms.PasswordInput)
-    password2 = forms.CharField(label=ugettext_lazy('Password confirmation'), widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        label=ugettext_lazy('Password'),
+        widget=forms.PasswordInput,
+        help_text=ugettext_lazy('Required.'))
+    password2 = forms.CharField(
+        label=ugettext_lazy('Password confirmation'),
+        widget=forms.PasswordInput,
+        help_text=ugettext_lazy('Required.'))
 
     class Meta:
         model = User
@@ -47,7 +53,10 @@ class UserCreateForm(forms.ModelForm):
         Inserts the exam form field.
         """
         value = super().__init__(*args, **kwargs)
-        self.fields['exam'] = forms.ChoiceField(label=ugettext_lazy('Exam'), choices=get_exam_choices())
+        self.fields['exam'] = forms.ChoiceField(
+            label=ugettext_lazy('Exam'),
+            choices=get_exam_choices(),
+            help_text=ugettext_lazy('Required. Choose your intented date of exam.'))
         return value
 
     def clean_password2(self):
@@ -92,7 +101,8 @@ class UserUpdateForm(forms.ModelForm):
         exam = self.request.user.exam
         self.fields['exam'] = forms.ChoiceField(
             label=ugettext_lazy('Exam'),
-            choices=get_exam_choices(extra=exam))
+            choices=get_exam_choices(extra=exam),
+            help_text=ugettext_lazy('Required. Choose your intented date of exam.'))
         self.initial['exam'] = exam
         return value
 

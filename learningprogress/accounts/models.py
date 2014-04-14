@@ -19,3 +19,9 @@ class User(AbstractUser):
         Returns always True because we won't use Django's permission system.
         """
         return True
+
+    def has_module_perms(self, app_label):
+        """
+        Returns always True because we won't use Django's permission system.
+        """
+        return True

@@ -2,10 +2,10 @@
 
 {% load i18n %}
 
-{% block title %}{% trans 'LearningProgress' %} – {{ title }}{% endblock %}
+{% block title %}{{ config.TITLE }} – {{ title }}{% endblock %}
 
 {% block branding %}
-    <h1 id="site-name">{% trans 'LearningProgress Administration' %}</h1>
+    <h1 id="site-name">{{ config.TITLE }} {% trans 'Site administration' %}</h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

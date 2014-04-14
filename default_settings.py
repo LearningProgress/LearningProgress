@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mptt',
+    'constance',
+    'constance.backends.database',
     'bootstrap3',
     'learningprogress.accounts',
     'learningprogress.progress')
@@ -104,6 +106,39 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'learningprogress', 'templates'),)
 AUTH_USER_MODEL = 'accounts.User'
 
 LOGIN_REDIRECT_URL = 'home'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'constance.context_processors.config')
+
+
+# Constance Configuration
+# https://github.com/comoga/django-constance/
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+CONSTANCE_CONFIG = {
+    'TITLE': (
+        'LearningProgress',
+        ugettext_lazy('Title of all pages.')),
+    'SUBTITLE': (
+        'LearningProgress',
+        ugettext_lazy('Subtitle of all pages.')),
+    'HOME_HEADING': (
+        'Instructions',
+        ugettext_lazy('Header of the home page.')),
+    'HOME_TEXT': (
+        '<p>Example text ...</p>',
+        ugettext_lazy('Text of the home page. Full HTML is supported.')),
+    'HOME_FOOTER': (
+        'Copyright © 2014 Authors of LearningProgress',
+        ugettext_lazy('Footer of all pages.'))}
 
 
 # Email

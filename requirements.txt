@@ -1,3 +1,6 @@
 Django>=1.6,<1.7
 django-mptt==0.6.0
+# django-constance[database]>0.6
+https://github.com/LearningProgress/django-constance/archive/0.6.post20140411.tar.gz
+django-picklefield==0.3.1
 django-bootstrap3>=3.2,<3.3

@@ -9,6 +9,15 @@
 {% block content %}
     <header>
         <h1>{% trans 'My learning progress' %}</h1>
+        {% if user.exam_days %}
+            <p>
+                {% blocktrans count days=user.exam_days %}
+                    Still one day until exam.
+                {% plural %}
+                    Still {{ days }} days until exam.
+                {% endblocktrans %}
+            </p>
+        {% endif %}
         {% for progress_dict in user_learning_progress reversed %}
             <span class="glyphicon glyphicon-{{ progress_dict.css_glyphicon }}"></span> {{ progress_dict.text }}
             <div class="progress">

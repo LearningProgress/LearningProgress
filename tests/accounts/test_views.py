@@ -1,9 +1,11 @@
+import datetime
+
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
 from django.utils import timezone
 
-from learningprogress.accounts.models import User
+from learningprogress.accounts.models import ExamDate, User
 
 
 class RegisterTest(TestCase):
@@ -147,3 +149,38 @@ class DeleteTest(TestCase):
         response = self.client.post(reverse('user_delete'))
         self.assertRedirects(response, expected_url=reverse('home'))
         self.assertFalse(User.objects.filter(username='username_mieth0johy6yegouHa1y').exists())
+
+
+class ExamDateNoteTest(TestCase):
+    """
+    Tests note “Still ... days until exam.”.
+    """
+    def setUp_user(self):
+        self.user = User.objects.create_user(
+            username='username_hee3ooc7oh8Pooqu8doe',
+            password='password_ooHaidoo1di9ohX5Ev4o',
+            exam='20082')
+        self.client = Client()
+        self.client.login(
+            username='username_hee3ooc7oh8Pooqu8doe',
+            password='password_ooHaidoo1di9ohX5Ev4o')
+
+    def test_str_spring(self):
+        exam_date = ExamDate.objects.create(key=20141, date=datetime.date(2014,2,18))
+        self.assertEqual(str(exam_date), 'Spring 2014 (2014-02-18)')
+
+    def test_str_autumn(self):
+        exam_date = ExamDate.objects.create(key=20082, date=datetime.date(2008,8,21))
+        self.assertEqual(str(exam_date), 'Autumn 2008 (2008-08-21)')
+
+    def test_get(self):
+        self.setUp_user()
+        exam_date = ExamDate.objects.create(key=20082, date=datetime.date(2008,8,21))
+        days_object = exam_date.date - timezone.now().date()
+        response = self.client.get('/progress/')
+        self.assertContains(response, 'Still %d days until exam.' % days_object.days)
+
+    def test_get_undefined(self):
+        self.setUp_user()
+        response = self.client.get('/progress/')
+        self.assertNotContains(response, 'days until exam.')

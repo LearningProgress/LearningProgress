@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin as _UserAdmin
 from django.contrib.auth.forms import UserCreationForm as _UserCreationForm
 from django.contrib.auth.models import Group
 
-from .models import User
+from .models import ExamDate, User
 
 
 class UserCreationForm(_UserCreationForm):
@@ -41,5 +41,6 @@ class UserAdmin(_UserAdmin):
     add_form = UserCreationForm
 
 
+admin.site.register(ExamDate)
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)

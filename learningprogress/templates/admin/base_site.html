@@ -5,7 +5,7 @@
 {% block title %}{{ config.TITLE }} – {{ title }}{% endblock %}
 
 {% block branding %}
-    <h1 id="site-name">{{ config.TITLE }} {% trans 'Site administration' %}</h1>
+    <h1 id="site-name"><a href="{% url 'home' %}">{{ config.TITLE }}</a> {% trans 'Site administration' %}</h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

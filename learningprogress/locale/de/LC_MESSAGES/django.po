@@ -1,0 +1,443 @@
+# Language file for LearningProgress
+# This file is distributed under the same license as LearningProgress, see LICENSE file.
+# 
+# Translators:
+# anne.poetzsch <anne.poetzsch@yahoo.de>, 2014
+# normanjaeckel <transifex16062013@normanjaeckel.de>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: LearningProgress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-07 18:26+0200\n"
+"PO-Revision-Date: 2014-05-07 16:48+0000\n"
+"Last-Translator: normanjaeckel <transifex16062013@normanjaeckel.de>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/learningprogress/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/forms.py:19 accounts/forms.py:24 accounts/models.py:72
+#, python-format
+msgid "Spring %d"
+msgstr "Frühjahr %d"
+
+#: accounts/forms.py:20 accounts/forms.py:26 accounts/models.py:74
+#, python-format
+msgid "Autumn %d"
+msgstr "Herbst %d"
+
+#: accounts/forms.py:39
+msgid "Password"
+msgstr "Passwort"
+
+#: accounts/forms.py:41 accounts/forms.py:45
+msgid "Required."
+msgstr "Erforderlich."
+
+#: accounts/forms.py:43
+msgid "Password confirmation"
+msgstr "Bestätigung des Passworts"
+
+#: accounts/forms.py:57 accounts/forms.py:103 accounts/models.py:14
+msgid "Exam"
+msgstr "Examen"
+
+#: accounts/forms.py:59 accounts/forms.py:105
+msgid "Required. Choose your intented date of exam."
+msgstr "Erforderliche Angabe. Bitte wählen Sie ihren Examenstermin aus."
+
+#: accounts/forms.py:69
+msgid "Passwords don't match"
+msgstr "Die Passwörter stimmen nicht überein"
+
+#: accounts/models.py:16 accounts/models.py:54
+msgid ""
+"An integer with five digets. The first four digets represent the year, the "
+"last diget (1 or 2) represents the season."
+msgstr "Eine Ganzzahl mit fünf Ziffern. Die ersten vier Ziffern stehen für das Jahr, die letzte Ziffer (1 oder 2) steht für den Durchgang."
+
+#: accounts/models.py:52
+msgid "Exam key"
+msgstr "Examenskennung"
+
+#: accounts/models.py:57
+msgid "Date"
+msgstr "Datum"
+
+#: accounts/models.py:58
+msgid "Choose the first date of the respective exam session."
+msgstr "Wählen Sie das Datum des ersten Prüfungstags des entsprechenden Examensdurchgangs."
+
+#: accounts/models.py:62
+msgid "Date of exam"
+msgstr "Examenstermin"
+
+#: accounts/models.py:63
+msgid "Dates of exam"
+msgstr "Examenstermine"
+
+#: accounts/templates/accounts/login.html:6
+#: accounts/templates/accounts/login.html:9
+#: accounts/templates/accounts/login.html:14
+#: accounts/templates/accounts/password_reset_complete.html:10
+#: templates/home.html:31
+msgid "Log in"
+msgstr "Anmelden"
+
+#: accounts/templates/accounts/login.html:15
+#: accounts/templates/accounts/password_reset_confirm.html:6
+#: accounts/templates/accounts/password_reset_confirm.html:22
+#: accounts/templates/accounts/password_reset_form.html:6
+#: accounts/templates/accounts/password_reset_form.html:9
+#: accounts/templates/accounts/password_reset_form.html:15
+msgid "Password reset"
+msgstr "Passwort zurücksetzen"
+
+#: accounts/templates/accounts/login.html:16
+#: accounts/templates/accounts/user_create_form.html:6
+#: accounts/templates/accounts/user_create_form.html:9 templates/home.html:30
+msgid "Register"
+msgstr "Registrieren"
+
+#: accounts/templates/accounts/password_change_done.html:5
+#: accounts/templates/accounts/password_change_done.html:8
+msgid "Password change successful"
+msgstr "Passwort erfolgreich geändert"
+
+#: accounts/templates/accounts/password_change_done.html:9
+msgid "Your password was changed."
+msgstr "Ihr Passwort wurde geändert."
+
+#: accounts/templates/accounts/password_change_done.html:10
+#: accounts/templates/accounts/password_change_form.html:15
+#: accounts/templates/accounts/password_reset_done.html:11
+#: accounts/templates/accounts/password_reset_form.html:16
+#: accounts/templates/accounts/user_confirm_delete.html:17
+#: accounts/templates/accounts/user_update_form.html:18
+#: progress/templates/progress/mockexam_confirm_delete.html:25
+#: progress/templates/progress/usersectionrelation_form_snippet.html:15
+msgid "Back"
+msgstr "Zurück"
+
+#: accounts/templates/accounts/password_change_form.html:6
+#: accounts/templates/accounts/password_change_form.html:9
+#: accounts/templates/accounts/password_change_form.html:14
+msgid "Password change"
+msgstr "Passwort ändern"
+
+#: accounts/templates/accounts/password_reset_complete.html:5
+#: accounts/templates/accounts/password_reset_complete.html:8
+msgid "Password reset complete"
+msgstr "Passwort wurde zurück gesetzt"
+
+#: accounts/templates/accounts/password_reset_complete.html:9
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr "Ihr Passowort wurde gespeichert. Sie können nun fortfahren und sich anmelden."
+
+#: accounts/templates/accounts/password_reset_confirm.html:10
+msgid "Enter new password"
+msgstr "Wählen Sie ein neues Passwort"
+
+#: accounts/templates/accounts/password_reset_confirm.html:11
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr "Bitte geben Sie zweimal Ihr neues Passwort ein, um Fehler in der Schreibweise zu verhindern."
+
+#: accounts/templates/accounts/password_reset_confirm.html:16
+#: accounts/templates/accounts/user_update_form.html:16
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: accounts/templates/accounts/password_reset_confirm.html:20
+msgid "Password reset unsuccessful"
+msgstr "Passwort wurde nicht zurückgesetzt"
+
+#: accounts/templates/accounts/password_reset_confirm.html:21
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr "Der Link um das Passowrt zurückzusetzen war ungültig, möglicherweise weil er schon einmal benutzt wurde. Bitte fordern Sie nochmals eine Zurücksetzung des Passworts an."
+
+#: accounts/templates/accounts/password_reset_done.html:5
+#: accounts/templates/accounts/password_reset_done.html:8
+msgid "Password reset successful"
+msgstr "Passwort wurde erfolgreich zurückgesetzt"
+
+#: accounts/templates/accounts/password_reset_done.html:9
+msgid ""
+"We've emailed you instructions for setting your password. You should be "
+"receiving them shortly."
+msgstr "Es wurde eine E-Mail an Sie versendet, damit Sie ein neues Passwort setzen können. Sie werden diese E-Mail in Kürze erhalten."
+
+#: accounts/templates/accounts/password_reset_done.html:10
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr "Wenn Sie keine E-Mail erhalten, überprüfen Sie bitte, ob Sie die Adresse angegeben haben, mit der Sie sich angemeldet haben, und überprüfen Sie den Spam-Ordner."
+
+#: accounts/templates/accounts/password_reset_email.html:1
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr "Sie erhalten diese E-Mail, weil Sie auf %(site_name)s eine Zurücksetzung des Passworts angefordert haben."
+
+#: accounts/templates/accounts/password_reset_email.html:3
+msgid "Please go to the following page and choose a new password:"
+msgstr "Bitte besuchen Sie die folgende Seite und wählen Sie ein neues Passwort:"
+
+#: accounts/templates/accounts/password_reset_email.html:7
+msgid "Your username, in case you've forgotten:"
+msgstr "Ihr Benutzername, falls Sie ihn vergessen haben: "
+
+#: accounts/templates/accounts/password_reset_email.html:9
+msgid "Thanks for using our site!"
+msgstr "Danke für den Besuch unserer Seite!"
+
+#: accounts/templates/accounts/password_reset_email.html:11
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "Das Team von %(site_name)s"
+
+#: accounts/templates/accounts/password_reset_form.html:10
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr "Haben Sie ihr Passwort vergessen? Geben Sie ihre E-Mail-Adresse an und Sie erhalten eine E-Mail um ein neues Passwort zu setzen."
+
+#: accounts/templates/accounts/user_confirm_delete.html:6
+#: accounts/templates/accounts/user_confirm_delete.html:9
+msgid "Delete user"
+msgstr "Benutzer löschen"
+
+#: accounts/templates/accounts/user_confirm_delete.html:13
+msgid "Are you sure you want to delete yourself?"
+msgstr "Sind Sie sicher, dass Sie sich selbst löschen wollen?"
+
+#: accounts/templates/accounts/user_confirm_delete.html:16
+#: progress/templates/progress/mockexam_confirm_delete.html:24
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: accounts/templates/accounts/user_create_form.html:10
+#: accounts/templates/accounts/user_update_form.html:10
+msgid ""
+"If you enter a valid email address, you will be able to reset your password "
+"if you have forgotten it."
+msgstr "Wenn Sie eine gültige E-Mail-Adresse angeben, können Sie ihr Passwort zurücksetzen, wenn es vergessen werden sollte."
+
+#: accounts/templates/accounts/user_create_form.html:15
+msgid "Register and log in"
+msgstr "Registrieren und Anmelden"
+
+#: accounts/templates/accounts/user_update_form.html:6
+#: accounts/templates/accounts/user_update_form.html:9 templates/home.html:58
+msgid "Change user data"
+msgstr "Benutzerdaten ändern"
+
+#: accounts/templates/accounts/user_update_form.html:15
+#: progress/templates/progress/mockexam_form.html:40
+#: progress/templates/progress/usersectionrelation_form_snippet.html:14
+msgid "Save"
+msgstr "Speichern"
+
+#: accounts/templates/accounts/user_update_form.html:17
+msgid "Delete"
+msgstr "Löschen"
+
+#: progress/forms.py:12
+msgid "Progress"
+msgstr "Fortschritt"
+
+#: progress/forms.py:15
+msgid "Comment"
+msgstr "Kommentar"
+
+#: progress/models.py:15 progress/models.py:80
+msgid "Name"
+msgstr "Name"
+
+#: progress/models.py:21
+msgid "Parent section"
+msgstr "Elternelement"
+
+#: progress/models.py:24 progress/models.py:83
+msgid "Weight"
+msgstr "Gewichtung"
+
+#: progress/models.py:25 progress/models.py:84
+msgid "Use this for ordering elements."
+msgstr "Benutzen Sie dieses Feld um Elemente anzuordnen."
+
+#: progress/models.py:29
+msgid "Learning scores"
+msgstr "Lernwert"
+
+#: progress/models.py:30
+msgid ""
+"Choose a value from 1 to 100. Only relevant for elements without children."
+msgstr "Wählen Sie einen Wert von 1 bis 100. Diese Angabe ist nur für Elemente ohne Kindelemente relevant."
+
+#: progress/models.py:33
+#: progress/templates/progress/usersectionrelation_form_snippet.html:6
+msgid "Notes"
+msgstr "Notizen"
+
+#: progress/models.py:39
+#: progress/templates/progress/usersectionrelation_form.html:5
+#: progress/templates/progress/usersectionrelation_form.html:8
+msgid "Section"
+msgstr "Thema"
+
+#: progress/models.py:40
+msgid "Sections"
+msgstr "Themen"
+
+#: progress/models.py:50
+msgid "Nothing done"
+msgstr "Nicht bearbeitet"
+
+#: progress/models.py:51
+msgid "First look"
+msgstr "Überblick verschafft"
+
+#: progress/models.py:52
+msgid "Crammed"
+msgstr "Gepaukt"
+
+#: progress/models.py:53
+msgid "All done"
+msgstr "Erledigt"
+
+#: progress/models.py:68
+msgid "Relation between an user and a section"
+msgstr "Verknüpfung zwischen Nutzer und Thema"
+
+#: progress/models.py:88
+msgid "Mock exam branch"
+msgstr "Teilgebiet von Übungsklausuren"
+
+#: progress/models.py:89
+msgid "Mock exam branches"
+msgstr "Teilgebiete von Übungsklausuren"
+
+#: progress/models.py:102
+msgid "Branch"
+msgstr "Teilgebiet"
+
+#: progress/models.py:105
+msgid "Mark"
+msgstr "Note"
+
+#: progress/templates/progress/mockexam_confirm_delete.html:6
+#: progress/templates/progress/mockexam_confirm_delete.html:9
+msgid "Delete mock exam"
+msgstr "Übungsklausur löschen"
+
+#: progress/templates/progress/mockexam_confirm_delete.html:15
+#, python-format
+msgid ""
+"\n"
+"                    %(mark)s Point (%(date)s)\n"
+"                "
+msgid_plural ""
+"\n"
+"                    %(mark)s Points (%(date)s)\n"
+"                "
+msgstr[0] "\n                    %(mark)s Punkt (%(date)s)\n                "
+msgstr[1] "\n                    %(mark)s Punkte (%(date)s)\n                "
+
+#: progress/templates/progress/mockexam_confirm_delete.html:21
+msgid "Are you sure you want to delete this mock exam?"
+msgstr "Sind Sie sicher, diese Übungsklausur zu löschen?"
+
+#: progress/templates/progress/mockexam_form.html:7
+#: progress/templates/progress/mockexam_form.html:10 templates/home.html:55
+msgid "My mock exams"
+msgstr "Meine Übungsklausuren"
+
+#: progress/templates/progress/mockexam_form.html:12
+msgid "Previous mock exams"
+msgstr "Frühere Übungsklausuren"
+
+#: progress/templates/progress/mockexam_form.html:19
+#, python-format
+msgid ""
+"\n"
+"                        %(mark)s Point (%(date)s)\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        %(mark)s Points (%(date)s)\n"
+"                    "
+msgstr[0] "\n                        %(mark)s Punkt (%(date)s)\n                    "
+msgstr[1] "\n                        %(mark)s Punkte (%(date)s)\n                    "
+
+#: progress/templates/progress/mockexam_form.html:27
+msgid "Average"
+msgstr "Durchschnitt"
+
+#: progress/templates/progress/mockexam_form.html:28
+msgid "Points"
+msgstr "Punkte"
+
+#: progress/templates/progress/mockexam_form.html:31
+msgid "No mock exams available"
+msgstr "Keine Übungsklausuren vorhanden"
+
+#: progress/templates/progress/mockexam_form.html:35
+msgid "New mock exam"
+msgstr "Neue Übungsklausur"
+
+#: progress/templates/progress/mockexam_form.html:41
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: progress/templates/progress/section_list.html:7
+#: progress/templates/progress/section_list.html:11 templates/home.html:52
+msgid "My learning progress"
+msgstr "Mein Lernfortschritt"
+
+#: progress/templates/progress/section_list.html:14
+#, python-format
+msgid ""
+"\n"
+"                    Still one day until exam.\n"
+"                "
+msgid_plural ""
+"\n"
+"                    Still %(days)s days until exam.\n"
+"                "
+msgstr[0] "\n                   Noch ein Tag bis zum Examen.\n                "
+msgstr[1] "\n                    Noch %(days)s Tage bis zum Examen.\n                "
+
+#: templates/home.html:23
+msgid "Registration and authentication"
+msgstr "Registrierung und Authentifizierung"
+
+#: templates/home.html:26
+msgid "User"
+msgstr "Benutzer"
+
+#: templates/home.html:33
+msgid "Log out"
+msgstr "Abmelden"
+
+#: templates/home.html:35
+msgid "Administration"
+msgstr "Administration"
+
+#: templates/home.html:45
+msgid "Navigation"
+msgstr "Navigation"
+
+#: templates/home.html:49 templates/home.html.py:61
+msgid "Home"
+msgstr "Startseite"
+
+#: templates/admin/base_site.html:8
+msgid "Site administration"
+msgstr "Webseiten-Verwaltung"

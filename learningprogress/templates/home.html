@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ config.TITLE }}{% endblock %}</title>
     <link href="{{ STATIC_URL }}css/bootstrap-3.1.1.min.css" rel="stylesheet">
+    <style>
+        body {background-color:#FFFFCC;}
+        .navbar-default {background-color:#FFCC33;}
+        .navbar-default p.navbar-text {color: #d9534f;}
+        .navbar-default .navbar-nav > li > a {color: #d9534f;}
+        nav .nav-pills > li > a {color: #d9534f;}
+        nav .nav-pills > li.active > a {background-color: #d9534f;}
+        nav .nav-pills > li.active > a:hover {background-color: #d9534f;}
+        nav .nav-pills > li.active > a:focus {background-color: #d9534f;}
+    </style>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <header>
             <nav class="navbar navbar-default">
                 <h1 class="sr-only">{% trans 'Registration and authentication' %}</h1>
@@ -33,7 +43,7 @@
             </div>
             <nav>
                 <h1 class="sr-only">{% trans 'Navigation' %}</h1>
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-pills">
                     {% if user.is_authenticated %}
                         <li {% if view.self_pattern_name == 'home' %}class="active"{% endif %}>
                             <a href="{% url 'home' %}">{% trans 'Home' %}</a>
@@ -62,7 +72,7 @@
             </article>
         </main>
         <footer>
-            <div class="container-fluid">
+            <div class="container">
                 <hr>
                 <p>
                     {{ config.HOME_FOOTER }}

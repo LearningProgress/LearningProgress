@@ -103,7 +103,8 @@ class MockExam(models.Model):
     mark = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(18)],
         verbose_name=ugettext_lazy('Mark'))
-    date = models.DateField()
+    date = models.DateField(
+        verbose_name=ugettext_lazy('Date'))
 
     class Meta:
         ordering = ('branch', 'date')

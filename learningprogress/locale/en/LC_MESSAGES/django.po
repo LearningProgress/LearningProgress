@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 18:26+0200\n"
+"POT-Creation-Date: 2014-05-09 17:52+0200\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Exam key"
 msgstr ""
 
-#: accounts/models.py:57
+#: accounts/models.py:57 progress/models.py:107
 msgid "Date"
 msgstr ""
 

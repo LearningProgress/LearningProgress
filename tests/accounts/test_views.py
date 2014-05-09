@@ -3,7 +3,9 @@ import datetime
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
+from django.test.utils import override_settings
 from django.utils import timezone
+from django.utils.translation import ugettext as _
 
 from learningprogress.accounts.models import ExamDate, User
 
@@ -41,7 +43,7 @@ class RegisterTest(TestCase):
              'password2': 'invalid',
              'exam': str(exam)})
         self.assertTemplateUsed(response, template_name='accounts/user_create_form.html')
-        self.assertFormError(response, form='form', field='password2', errors="Passwords don't match")
+        self.assertFormError(response, form='form', field='password2', errors=_("Passwords don't match"))
         self.assertFalse(User.objects.filter(username='username_mae0weiGh2eid5keejah').exists())
 
 
@@ -151,6 +153,7 @@ class DeleteTest(TestCase):
         self.assertFalse(User.objects.filter(username='username_mieth0johy6yegouHa1y').exists())
 
 
+@override_settings(LANGUAGE_CODE='en')
 class ExamDateNoteTest(TestCase):
     """
     Tests note “Still ... days until exam.”.

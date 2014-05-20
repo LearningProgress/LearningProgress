@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LearningProgress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 18:26+0200\n"
-"PO-Revision-Date: 2014-05-07 16:48+0000\n"
+"POT-Creation-Date: 2014-05-20 13:54+0200\n"
+"PO-Revision-Date: 2014-05-20 12:01+0000\n"
 "Last-Translator: normanjaeckel <transifex16062013@normanjaeckel.de>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/learningprogress/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Eine Ganzzahl mit fünf Ziffern. Die ersten vier Ziffern stehen für das
 msgid "Exam key"
 msgstr "Examenskennung"
 
-#: accounts/models.py:57
+#: accounts/models.py:57 progress/models.py:107
 msgid "Date"
 msgstr "Datum"
 
@@ -227,7 +227,7 @@ msgstr "Bestätigen"
 msgid ""
 "If you enter a valid email address, you will be able to reset your password "
 "if you have forgotten it."
-msgstr "Wenn Sie eine gültige E-Mail-Adresse angeben, können Sie ihr Passwort zurücksetzen, wenn es vergessen werden sollte."
+msgstr "Wenn Sie eine gültige E-Mail-Adresse angeben, können Sie ihr Passwort gegebenenfalls zurücksetzen."
 
 #: accounts/templates/accounts/user_create_form.html:15
 msgid "Register and log in"
@@ -302,11 +302,11 @@ msgstr "Nicht bearbeitet"
 
 #: progress/models.py:51
 msgid "First look"
-msgstr "Überblick verschafft"
+msgstr "Punktuell bearbeitet"
 
 #: progress/models.py:52
 msgid "Crammed"
-msgstr "Gepaukt"
+msgstr "Vertieft bearbeitet"
 
 #: progress/models.py:53
 msgid "All done"
@@ -328,9 +328,9 @@ msgstr "Teilgebiete von Übungsklausuren"
 msgid "Branch"
 msgstr "Teilgebiet"
 
-#: progress/models.py:105
-msgid "Mark"
-msgstr "Note"
+#: progress/models.py:105 progress/templates/progress/mockexam_form.html:28
+msgid "Points"
+msgstr "Punkte"
 
 #: progress/templates/progress/mockexam_confirm_delete.html:6
 #: progress/templates/progress/mockexam_confirm_delete.html:9
@@ -379,10 +379,6 @@ msgstr[1] "\n                        %(mark)s Punkte (%(date)s)\n               
 #: progress/templates/progress/mockexam_form.html:27
 msgid "Average"
 msgstr "Durchschnitt"
-
-#: progress/templates/progress/mockexam_form.html:28
-msgid "Points"
-msgstr "Punkte"
 
 #: progress/templates/progress/mockexam_form.html:31
 msgid "No mock exams available"

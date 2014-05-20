@@ -102,7 +102,7 @@ class MockExam(models.Model):
         verbose_name=ugettext_lazy('Branch'))
     mark = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(18)],
-        verbose_name=ugettext_lazy('Mark'))
+        verbose_name=ugettext_lazy('Points'))
     date = models.DateField(
         verbose_name=ugettext_lazy('Date'))
 

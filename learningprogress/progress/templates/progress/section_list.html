@@ -40,6 +40,7 @@
                         {{ node.name }}
                     </a>
                     <span class="glyphicon glyphicon-{% section_progress_icon node %}"></span>
+                    <span class="sr-only">{% section_progress_text node %}</span>
                 {% endif %}
             </li>
         {% endrecursetree %}

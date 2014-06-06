@@ -19,6 +19,19 @@ def section_progress_icon(context, section):
     return value
 
 
+def section_progress_text(context, section):
+    """
+    Template tag which returns a string for the progress info text
+    depending on the context dictionary 'section_progresses' and the given
+    section.
+    """
+    try:
+        value = get_progress_info(context['section_progresses'][section.pk], 'text')
+    except KeyError:
+        value = ''
+    return value
+
+
 def branch_average(context, mockexambranch):
     """
     Template tag to return the average of all user's marks for the given mock
@@ -29,4 +42,5 @@ def branch_average(context, mockexambranch):
 
 
 register.simple_tag(takes_context=True)(section_progress_icon)
+register.simple_tag(takes_context=True)(section_progress_text)
 register.simple_tag(takes_context=True)(branch_average)

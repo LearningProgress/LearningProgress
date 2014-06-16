@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.test.client import Client
 
 from learningprogress.accounts.models import User
+from learningprogress.progress.models import Section, UserSectionRelation
 
 
 class CreateTest(TestCase):
@@ -59,3 +60,32 @@ class CreateTest(TestCase):
         response = client.get(reverse('admin:index'))
         self.assertTemplateUsed(response, 'admin/index.html')
         self.assertContains(response, 'Accounts')
+
+
+class ChangeListTest(TestCase):
+    """
+    Tests the change list view in the admin.
+    """
+    def test_progress_objects_info(self):
+        """
+        Tests the appearance of the progress objects info column
+        """
+        user = User.objects.create_user(
+            username='username_aibi1tahqu9eishozo5A',
+            password='password_AiShee8Fibo0chu0thie')
+        user.is_staff = True
+        user.save()
+        client = Client()
+        client.login(
+            username='username_aibi1tahqu9eishozo5A',
+            password='password_AiShee8Fibo0chu0thie')
+        section_1 = Section.objects.create(name='section_eequ7eiXoiXaid0Zai9s')
+        section_2 = Section.objects.create(name='section_EeleijeiPhee4Kaef7eg')
+        section_3 = Section.objects.create(name='section_Gaix9dapeen3eeshidah')
+        response = client.get(reverse('admin:accounts_user_changelist'))
+        self.assertContains(response, '0 / 0 / 0')
+        UserSectionRelation.objects.create(user=user, section=section_1, progress=1)
+        UserSectionRelation.objects.create(user=user, section=section_2, progress=2)
+        UserSectionRelation.objects.create(user=user, section=section_3, progress=3)
+        response = client.get(reverse('admin:accounts_user_changelist'))
+        self.assertContains(response, '1 / 1 / 1')

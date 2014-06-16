@@ -42,6 +42,18 @@ class User(AbstractUser):
             value = days_object.days
         return value
 
+    def progress_objects(self):
+        """
+        Returns some info, how many sections the user has been working on.
+        Only for the website admin.
+        """
+        query = self.usersectionrelation_set.all()
+        first_look = query.filter(progress=1).count()
+        crammed = query.filter(progress=2).count()
+        all_done = query.filter(progress=3).count()
+        return '%d / %d / %d' % (first_look, crammed, all_done)
+    progress_objects.short_description = _('Progress objects')
+
 
 class ExamDate(models.Model):
     """

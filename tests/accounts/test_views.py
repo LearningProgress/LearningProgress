@@ -169,16 +169,16 @@ class ExamDateNoteTest(TestCase):
             password='password_ooHaidoo1di9ohX5Ev4o')
 
     def test_str_spring(self):
-        exam_date = ExamDate.objects.create(key=20141, date=datetime.date(2014,2,18))
+        exam_date = ExamDate.objects.create(key=20141, date=datetime.date(2014, 2, 18))
         self.assertEqual(str(exam_date), 'Spring 2014 (2014-02-18)')
 
     def test_str_autumn(self):
-        exam_date = ExamDate.objects.create(key=20082, date=datetime.date(2008,8,21))
+        exam_date = ExamDate.objects.create(key=20082, date=datetime.date(2008, 8, 21))
         self.assertEqual(str(exam_date), 'Autumn 2008 (2008-08-21)')
 
     def test_get(self):
         self.setUp_user()
-        exam_date = ExamDate.objects.create(key=20082, date=datetime.date(2008,8,21))
+        exam_date = ExamDate.objects.create(key=20082, date=datetime.date(2008, 8, 21))
         days_object = exam_date.date - timezone.now().date()
         response = self.client.get('/progress/')
         self.assertContains(response, 'Still %d days until exam.' % days_object.days)

@@ -9,6 +9,12 @@
 {% block content %}
     <header>
         <h1>{% trans 'My learning progress' %}</h1>
+        <p>
+            <a href="{% url 'print_comments' %}" class="btn btn-danger btn-sm" role="button">
+                <span class="glyphicon glyphicon-print"></span>
+                {% trans 'Print all comments' %}
+            </a>
+        </p>
         {% if user.exam_days %}
             <p>
                 {% blocktrans count days=user.exam_days %}
@@ -26,6 +32,7 @@
                 </div>
             </div>
         {% endfor %}
+        <hr>
     </header>
     <ul class="list-unstyled">
         {% recursetree section_list %}

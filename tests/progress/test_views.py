@@ -33,6 +33,10 @@ class SectionListViewTest(TestCase):
         response = self.client.get(reverse('section_list'))
         self.assertTemplateUsed(response, template_name='progress/section_list.html')
 
+    def test_print_link(self):
+        response = self.client.get(reverse('section_list'))
+        self.assertContains(response, 'href="%s"' % reverse('print_comments'))
+
 
 class UserSectionRelationUpdateViewTest(TestCase):
     """
@@ -120,6 +124,32 @@ class UserSectionRelationUpdateViewTest(TestCase):
         self.assertTrue(data['form_errors']['progress'])
         usersectionrelation = UserSectionRelation.objects.get(user=self.user, section=section)
         self.assertNotEqual(usersectionrelation.comment, 'comment_oc4Yei1ique3ub2PhaiM')
+
+
+class PrintCommentsViewTest(TestCase):
+    """
+    Tests view to display all user's section comments in a printable format.
+    """
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='username_Aej8oodoh2yawohgh5ie',
+            password='password_Oo6pe0vukiethaequa6i')
+        self.client = Client()
+        self.client.login(
+            username='username_Aej8oodoh2yawohgh5ie',
+            password='password_Oo6pe0vukiethaequa6i')
+
+    def test_get(self):
+        section1 = Section.objects.create(name='ohh7Ohhesoot2aikae6h')
+        section2 = Section.objects.create(name='Mu2xie7ung2ea4paeC7n')
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': 'comment_iz9weng9neigoh5Jeish'})
+        response = self.client.get(reverse('print_comments'))
+        self.assertContains(response, 'ohh7Ohhesoot2aikae6h')
+        self.assertNotContains(response, 'Mu2xie7ung2ea4paeC7n')
+        self.assertContains(response, 'comment_iz9weng9neigoh5Jeish')
 
 
 class MockExamFormViewTest(TestCase):

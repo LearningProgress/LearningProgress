@@ -169,6 +169,16 @@ class UserSectionRelationUpdateView(FormView):
         return HttpResponse(data, **response_kwargs)
 
 
+class PrintCommentsView(ListView):
+    """
+    View to display all user's section comments in a printable format.
+    """
+    template_name = 'progress/print_comments.html'
+
+    def get_queryset(self):
+        return UserSectionRelation.objects.filter(user=self.request.user)
+
+
 class MockExamFormView(FormView):
     """
     View to display and update user's mock exams.

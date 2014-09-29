@@ -1,17 +1,17 @@
 # Patterns of intentionally untracked files that Git should ignore
 
-# Virtual Python Environment builder
-.virtualenv/
-
 # Python compiled files
 __pycache__/
 
+# Virtual Python Environment builder
+.virtualenv/
+
 # Django settings and SQLite3 database
-settings.py
+learningprogress_settings.py
 db.sqlite3
 
 # Collected static files
-collectstatic/
+collected_static/
 
 # Coverage.py – Code coverage measurement for Python
 .coverage

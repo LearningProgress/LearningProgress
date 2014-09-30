@@ -131,8 +131,42 @@ class UserSectionRelationUpdateViewTest(TestCase):
 
 
 class UserSectionRelationExportView(TestCase):
-    pass
-    # TODO
+    """
+    Tests view to export user's progress as JSON
+    (UserSectionRelationExportView).
+    """
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='username_eiyoo1Eighei4shahlup',
+            password='password_oFo5sho9thu5ieTaya5A')
+        self.client = Client()
+        self.client.login(
+            username='username_eiyoo1Eighei4shahlup',
+            password='password_oFo5sho9thu5ieTaya5A')
+        section_1 = Section.objects.create(name='name_thooKee0eNgeitai5ka4', notes='notes_ohh0eeZi9aich1aenieR')
+        Section.objects.create(name='name_ao8zuoQu4Iej6ash4vie', notes='notes_ohb3IiNauzeeghie7aqu')
+        UserSectionRelation.objects.create(
+            user=self.user,
+            section=section_1,
+            progress=3,
+            comment='comment_iexiequ5MeiM6Iegiem5')
+
+    def test_get(self):
+        expected_data = [
+            {'name': 'name_ao8zuoQu4Iej6ash4vie',
+             'scores': 1,
+             'notes': 'notes_ohb3IiNauzeeghie7aqu',
+             'progress': 0,
+             'comment': ''},
+            {'name': 'name_thooKee0eNgeitai5ka4',
+             'scores': 1,
+             'notes': 'notes_ohh0eeZi9aich1aenieR',
+             'progress': 3,
+             'comment': 'comment_iexiequ5MeiM6Iegiem5'}]
+        response = self.client.get(reverse('usersectionrelation_export'))
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content.decode('utf8'))
+        self.assertEqual(data, expected_data)
 
 
 class PrintNoteCardsViewTest(TestCase):

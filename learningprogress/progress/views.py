@@ -109,7 +109,6 @@ class UserSectionRelationUpdateView(FormView):
             form = self.get_form(form_class)
             context = self.get_context_data(form=form)
             context.update(csrf(self.request))
-            # context['STATIC_URL'] = settings.STATIC_URL  # TODO
             html = render_to_string('progress/usersectionrelation_form_snippet.html', context)
             html = '<p><button type="button" class="close" aria-hidden="true">&times;</button></p>' + html
             response = self.render_to_json_response({'html': html})

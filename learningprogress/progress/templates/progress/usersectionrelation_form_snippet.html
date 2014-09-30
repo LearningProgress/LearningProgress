@@ -1,5 +1,6 @@
 {% load bootstrap3 %}
 {% load i18n %}
+{% load staticfiles %}
 
 {% if section.notes %}
     <div class="form-group">
@@ -16,7 +17,7 @@
     {% endbuttons %}
 </form>
 
-<script src="{{ STATIC_URL }}ckeditor/ckeditor.js"></script>
+<script src="{% static 'ckeditor/ckeditor.js' %}"></script>
 <script>
     CKEDITOR.replace(
         'id_comment',

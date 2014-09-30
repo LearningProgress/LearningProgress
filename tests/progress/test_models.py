@@ -12,6 +12,35 @@ class SectionTest(TestCase):
         section = Section.objects.create(name='ieGah3cheepo1kaeSuo8')
         self.assertEqual(str(section), 'ieGah3cheepo1kaeSuo8')
 
+    def test_serialize_one(self):
+        user = User.objects.create(username='username_Taey0Ieve9keipequ5ae')
+        section = Section.objects.create(name='name_lee1sahh8Giem9an3jai', notes='notes_Ood3eulae2hoh4aeJie0')
+        UserSectionRelation.objects.create(
+            user=user,
+            section=section,
+            progress=3,
+            comment='comment_LahhoyipieX9sei2eesh')
+        self.assertEqual(
+            Section.objects.get(pk=1).serialize(user=user),
+            dict(
+                name='name_lee1sahh8Giem9an3jai',
+                scores=1,
+                notes='notes_Ood3eulae2hoh4aeJie0',
+                progress=3,
+                comment='comment_LahhoyipieX9sei2eesh'))
+
+    def test_serialize_two(self):
+        user = User.objects.create(username='username_iiY3gas0Ai5ieBee5pha')
+        Section.objects.create(name='name_mov7OhV5aishiedee5vu', notes='notes_tohyaoth9faghia5Oed0')
+        self.assertEqual(
+            Section.objects.get(pk=1).serialize(user=user),
+            dict(
+                name='name_mov7OhV5aishiedee5vu',
+                scores=1,
+                notes='notes_tohyaoth9faghia5Oed0',
+                progress=0,
+                comment=''))
+
 
 class UserSectionRelationTest(TestCase):
     """

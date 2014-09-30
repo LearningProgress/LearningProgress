@@ -2,10 +2,10 @@
 Django settings.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
+https://docs.djangoproject.com/en/1.7/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
+https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 import os
@@ -96,30 +96,19 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'learningprogress', 'static'),)
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'collectstatic')
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 
 # Miscellaneous
-
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'learningprogress', 'templates'),)
 
 AUTH_USER_MODEL = 'accounts.User'
 
 LOGIN_REDIRECT_URL = 'home'
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    'constance.context_processors.config')
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'learningprogress', 'templates'),)
 
 
-# Constance Configuration
-# https://github.com/comoga/django-constance/
+# Constance - Dynamic Django settings (django-constance)
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
@@ -143,8 +132,16 @@ CONSTANCE_CONFIG = {
         ugettext_lazy('Footer of all pages.'))}
 
 
+# Template context processors
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as _TEMPLATE_CONTEXT_PROCESSORS
+
+TEMPLATE_CONTEXT_PROCESSORS = _TEMPLATE_CONTEXT_PROCESSORS + (
+    'constance.context_processors.config',)
+
+
 # Email
-# https://docs.djangoproject.com/en/1.6/topics/email/
+# https://docs.djangoproject.com/en/1.7/topics/email/
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

@@ -54,7 +54,7 @@ class CreateTest(TestCase):
             username='username_eipohShied2xaeth4Eeh',
             password='password_ahxoog6nu7eer1aiSaif')
         response = client.get(reverse('admin:accounts_user_changelist'))
-        self.assertTemplateUsed(response, 'admin/login.html')
+        self.assertRedirects(response, reverse('admin:login') + '?next=' + reverse('admin:accounts_user_changelist'))
         user.is_staff = True
         user.save()
         response = client.get(reverse('admin:index'))

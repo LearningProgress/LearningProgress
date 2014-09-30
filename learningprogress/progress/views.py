@@ -1,12 +1,13 @@
 import json
 
-from django.conf import settings
 from django.core.context_processors import csrf
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
-from django.views.generic import DeleteView, FormView, ListView
+from django.views.generic import DeleteView, FormView, ListView, View
+from reportlab.pdfgen import canvas
+# from reportlab.platypus import Table  # TODO
 
 from . import forms
 from .models import PROGRESS_CHOICES, MockExam, Section, UserSectionRelation
@@ -108,7 +109,7 @@ class UserSectionRelationUpdateView(FormView):
             form = self.get_form(form_class)
             context = self.get_context_data(form=form)
             context.update(csrf(self.request))
-            context['STATIC_URL'] = settings.STATIC_URL
+            # context['STATIC_URL'] = settings.STATIC_URL  # TODO
             html = render_to_string('progress/usersectionrelation_form_snippet.html', context)
             html = '<p><button type="button" class="close" aria-hidden="true">&times;</button></p>' + html
             response = self.render_to_json_response({'html': html})
@@ -169,14 +170,97 @@ class UserSectionRelationUpdateView(FormView):
         return HttpResponse(data, **response_kwargs)
 
 
-class PrintCommentsView(ListView):
+class UserSectionRelationExportView(View):
     """
-    View to display all user's section comments in a printable format.
+    View to export all leaf node sections with users progress data and
+    comments as JSON.
     """
-    template_name = 'progress/print_comments.html'
+    def get(self, request, *args, **kwargs):
+        sections = [
+            section.serialize(user=self.request.user)
+            for section in Section.objects.all()
+            if section.is_leaf_node()]
+        return HttpResponse(json.dumps(sections), content_type='application/json')
 
+
+# TODO
+class PrintNoteCardsView(View):
+    """
+    View to export all user's section comments in a printable format (PDF).
+    """
     def get_queryset(self):
         return UserSectionRelation.objects.filter(user=self.request.user)
+
+    def get(self, request, *args, **kwargs):
+        # Create the HttpResponse object with the appropriate PDF headers.
+        response = HttpResponse(mimetype='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename=somefilename.pdf'
+
+        # Create the PDF object, using the response object as its "file".
+        pdf = canvas.Canvas(response)
+
+        # from reportlab.pdfgen.canvas import Canvas
+        from reportlab.lib.styles import getSampleStyleSheet
+        from reportlab.lib.pagesizes import A4
+        # from reportlab.lib.units import inch, cm
+        from reportlab.platypus import Paragraph, Frame
+
+        width, height = A4
+        styles = getSampleStyleSheet()
+        styleN = styles['Normal']
+        styleH = styles['Heading1']
+
+        cards = []
+
+        # Get all cards with their stories.
+        story = []
+        story.append(Paragraph("This is a Heading", styleH))
+        story.append(Paragraph("This is a paragraph in<i>Normal</i>style.", styleN))
+        cards.append(story)
+        cards.append([Paragraph("This is another Heading1", styleH)])
+        cards.append([Paragraph("This is another Heading2", styleH)])
+        cards.append([Paragraph("This is another Heading3", styleH)])
+        cards.append([Paragraph("This is another Heading4", styleH)])
+        cards.append([Paragraph("This is another Heading5", styleH)])
+        cards.append([Paragraph("This is another Heading6", styleH)])
+        cards.append([Paragraph("This is another Heading7", styleH)])
+        cards.append([Paragraph("This is another Heading8", styleH)])
+
+        # Add cards to PDF object.
+        if len(cards) % 2 != 0:
+            cards.append('')
+        while True:
+            for i in range(3):
+                h = height * 2/3 - height * 1/3 * i
+                f1 = Frame(0, h, width/2, height * 1/3, showBoundary=1)
+                f2 = Frame(width/2, h, width/2, height * 1/3, showBoundary=1)
+                f1.addFromList(cards.pop(0), pdf)
+                f2.addFromList(cards.pop(0), pdf)
+                if len(cards) == 0:
+                    break
+            else:
+                pdf.showPage()
+                continue
+            pdf.showPage()
+            break
+
+        # Close the PDF object cleanly, and we're done.
+        pdf.save()
+        return response
+
+        # Draw things on the PDF. Here's where the PDF generation happens.
+        # See the ReportLab documentation for the full list of functionality.
+        # p.drawString(100, 100, "Hello world.")
+        # t = Table([[1,2,3], [4,5,6]])
+        # #import pdb; pdb.set_trace()
+        # #p.append(t)
+        # from reportlab.lib.pagesizes import A4, cm
+        # width, height = A4
+        # t.wrapOn(p, width, height)
+        # t.drawOn(p, 100, 100)
+        # # Close the PDF object cleanly, and we're done.
+        # p.showPage()
+        # p.save()
 
 
 class MockExamFormView(FormView):

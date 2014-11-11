@@ -183,19 +183,45 @@ class PrintNoteCardsViewTest(TestCase):
             username='username_Aej8oodoh2yawohgh5ie',
             password='password_Oo6pe0vukiethaequa6i')
 
-    # TODO
-    # def test_get(self):
-        # assert False
-        # section1 = Section.objects.create(name='ohh7Ohhesoot2aikae6h')
-        # section2 = Section.objects.create(name='Mu2xie7ung2ea4paeC7n')
-        # self.client.post(
-        #     reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
-        #     {'progress': '1',
-        #      'comment': 'comment_iz9weng9neigoh5Jeish'})
-        # response = self.client.get(reverse('print_comments'))
-        # self.assertContains(response, 'ohh7Ohhesoot2aikae6h')
-        # self.assertNotContains(response, 'Mu2xie7ung2ea4paeC7n')
-        # self.assertContains(response, 'comment_iz9weng9neigoh5Jeish')
+    def test_get_empty_pdf(self):
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_cards(self):
+        section1 = Section.objects.create(name='ohh7Ohhesoot2aikae6h')
+        Section.objects.create(name='Mu2xie7ung2ea4paeC7n')
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': 'comment_iz9weng9neigoh5Jeish'})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_many_cards(self):
+        for i in range(7):
+            name = 'some_name_%d' % i
+            comment = 'some_comment_%d' % i
+            section = Section.objects.create(name=name)
+            self.client.post(
+                reverse('usersectionrelation_update', kwargs={'pk': section.pk}),
+                {'progress': '1',
+                'comment': comment})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_long_comment(self):
+        section1 = Section.objects.create(name='oonie2gaJooShifioho2')
+        comment = 'x' * 1001
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': comment})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
 
 
 class MockExamFormViewTest(TestCase):

@@ -207,7 +207,7 @@ class PrintNoteCardsViewTest(TestCase):
             self.client.post(
                 reverse('usersectionrelation_update', kwargs={'pk': section.pk}),
                 {'progress': '1',
-                'comment': comment})
+                 'comment': comment})
         response = self.client.get(reverse('print_note_cards'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['content-type'], 'application/pdf')

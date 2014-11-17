@@ -215,6 +215,7 @@ class PrintNoteCardsView(View):
 
         # Get all cards with their stories.
         cards = []
+        max_comment_length = 500
         for usersectionrelation in self.get_queryset():
             story = []
             story.append(Paragraph(
@@ -223,7 +224,7 @@ class PrintNoteCardsView(View):
             story.append(Paragraph(
                 usersectionrelation.section.notes,
                 styles['Normal']))
-            if len(usersectionrelation.comment) <= 1000:
+            if len(usersectionrelation.comment) <= max_comment_length:
                 story.append(Paragraph(
                     usersectionrelation.comment,
                     styles['Normal']))

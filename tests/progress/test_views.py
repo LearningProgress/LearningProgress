@@ -212,9 +212,31 @@ class PrintNoteCardsViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['content-type'], 'application/pdf')
 
+    def test_get_pdf_with_long_name(self):
+        name = 'm' * 1001
+        section1 = Section.objects.create(name=name)
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': 'comment_aigah9Pha4ohyu1see2e'})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_long_notes(self):
+        notes = 'm' * 1001
+        section1 = Section.objects.create(name='name_aF1Ti7ohcahng2ook6Th', notes=notes)
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': 'comment_ush9AhDu5eifeileth8U'})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
     def test_get_pdf_with_long_comment(self):
         section1 = Section.objects.create(name='oonie2gaJooShifioho2')
-        comment = 'x' * 1001
+        comment = 'm' * 1001
         self.client.post(
             reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
             {'progress': '1',

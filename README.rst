@@ -34,7 +34,8 @@ best.*
     $ virtualenv .virtualenv --python=python3
     $ source .virtualenv/bin/activate
     $ pip install -r requirements.txt
-    $ python manage.py syncdb  # Prompts for input some superuser data.
+    $ python manage.py migrate
+    $ python manage.py createsuperuser  # Prompts for some input.
     $ python manage.py loaddata extras/example-data-de.json
     $ python manage.py runserver
 

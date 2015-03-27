@@ -134,7 +134,7 @@ CONSTANCE_CONFIG = {
 
 # Template context processors
 
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as _TEMPLATE_CONTEXT_PROCESSORS
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as _TEMPLATE_CONTEXT_PROCESSORS  # noqa
 
 TEMPLATE_CONTEXT_PROCESSORS = _TEMPLATE_CONTEXT_PROCESSORS + (
     'constance.context_processors.config',)

@@ -52,6 +52,7 @@ class User(AbstractUser):
         crammed = query.filter(progress=2).count()
         all_done = query.filter(progress=3).count()
         return '%d / %d / %d' % (first_look, crammed, all_done)
+
     progress_objects.short_description = _('Progress objects')
 
 

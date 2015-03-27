@@ -45,6 +45,25 @@ class Section(mptt_models.MPTTModel):
     def __str__(self):
         return self.name
 
+    def serialize(self, user):
+        """
+        Serializes the progress data of a user for the section. Returns a
+        dictionary.
+        """
+        data = dict(
+            name=self.name,
+            scores=self.scores,
+            notes=self.notes)
+        try:
+            usersectionrelation = self.usersectionrelation.get(user=user)
+        except UserSectionRelation.DoesNotExist:
+            data.update(dict(progress=0, comment=''))
+        else:
+            data.update(dict(
+                progress=usersectionrelation.progress,
+                comment=usersectionrelation.comment))
+        return data
+
 
 PROGRESS_CHOICES = (
     (0, ugettext_lazy('Nothing done')),

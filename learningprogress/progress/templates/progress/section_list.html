@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load mptt_tags %}
+{% load staticfiles %}
 {% load learning_progress_extras %}
 
 {% block title %}{{ block.super }} – {% trans 'My learning progress' %}{% endblock %}
@@ -9,6 +10,16 @@
 {% block content %}
     <header>
         <h1>{% trans 'My learning progress' %}</h1>
+        <p>
+            <a href="{% url 'print_note_cards' %}" class="btn btn-danger btn-sm" role="button" title="{% trans 'Only sections with own comments are printed.' %}">
+                <span class="glyphicon glyphicon-print"></span>
+                {% trans 'Print note cards' %}
+            </a>
+            <a href="{% url 'usersectionrelation_export' %}" class="btn btn-danger btn-sm" role="button">
+                <span class="glyphicon glyphicon-export"></span>
+                {% trans 'Export as JSON' %}
+            </a>
+        </p>
         {% if user.exam_days %}
             <p>
                 {% blocktrans count days=user.exam_days %}
@@ -26,6 +37,7 @@
                 </div>
             </div>
         {% endfor %}
+        <hr>
     </header>
     <ul class="list-unstyled">
         {% recursetree section_list %}
@@ -49,9 +61,9 @@
 
 {% block script %}
     {{ block.super }}
-    <script src="{{ STATIC_URL }}js/jquery-1.11.0.min.js"></script>
-    <script src="{{ STATIC_URL }}js/jquery.form.min.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-3.1.1.min.js"></script>
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery.form.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-3.1.1.min.js' %}"></script>
     <script>
         $('a.section-node').click(function () {
             var tag = $(this);

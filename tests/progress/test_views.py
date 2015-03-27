@@ -33,6 +33,14 @@ class SectionListViewTest(TestCase):
         response = self.client.get(reverse('section_list'))
         self.assertTemplateUsed(response, template_name='progress/section_list.html')
 
+    def test_export_json_link(self):
+        response = self.client.get(reverse('section_list'))
+        self.assertContains(response, 'href="%s"' % reverse('usersectionrelation_export'))
+
+    def test_export_note_cards_link(self):
+        response = self.client.get(reverse('section_list'))
+        self.assertContains(response, 'href="%s"' % reverse('print_note_cards'))
+
 
 class UserSectionRelationUpdateViewTest(TestCase):
     """
@@ -120,6 +128,122 @@ class UserSectionRelationUpdateViewTest(TestCase):
         self.assertTrue(data['form_errors']['progress'])
         usersectionrelation = UserSectionRelation.objects.get(user=self.user, section=section)
         self.assertNotEqual(usersectionrelation.comment, 'comment_oc4Yei1ique3ub2PhaiM')
+
+
+class UserSectionRelationExportView(TestCase):
+    """
+    Tests view to export user's progress as JSON
+    (UserSectionRelationExportView).
+    """
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='username_eiyoo1Eighei4shahlup',
+            password='password_oFo5sho9thu5ieTaya5A')
+        self.client = Client()
+        self.client.login(
+            username='username_eiyoo1Eighei4shahlup',
+            password='password_oFo5sho9thu5ieTaya5A')
+        section_1 = Section.objects.create(name='name_thooKee0eNgeitai5ka4', notes='notes_ohh0eeZi9aich1aenieR')
+        Section.objects.create(name='name_ao8zuoQu4Iej6ash4vie', notes='notes_ohb3IiNauzeeghie7aqu')
+        UserSectionRelation.objects.create(
+            user=self.user,
+            section=section_1,
+            progress=3,
+            comment='comment_iexiequ5MeiM6Iegiem5')
+
+    def test_get(self):
+        expected_data = [
+            {'name': 'name_ao8zuoQu4Iej6ash4vie',
+             'scores': 1,
+             'notes': 'notes_ohb3IiNauzeeghie7aqu',
+             'progress': 0,
+             'comment': ''},
+            {'name': 'name_thooKee0eNgeitai5ka4',
+             'scores': 1,
+             'notes': 'notes_ohh0eeZi9aich1aenieR',
+             'progress': 3,
+             'comment': 'comment_iexiequ5MeiM6Iegiem5'}]
+        response = self.client.get(reverse('usersectionrelation_export'))
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content.decode('utf8'))
+        self.assertEqual(data, expected_data)
+
+
+class PrintNoteCardsViewTest(TestCase):
+    """
+    Tests view to export all user's section comments in a printable format
+    (PDF).
+    """
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='username_Aej8oodoh2yawohgh5ie',
+            password='password_Oo6pe0vukiethaequa6i')
+        self.client = Client()
+        self.client.login(
+            username='username_Aej8oodoh2yawohgh5ie',
+            password='password_Oo6pe0vukiethaequa6i')
+
+    def test_get_empty_pdf(self):
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_cards(self):
+        section1 = Section.objects.create(name='ohh7Ohhesoot2aikae6h')
+        Section.objects.create(name='Mu2xie7ung2ea4paeC7n')
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': 'comment_iz9weng9neigoh5Jeish'})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_many_cards(self):
+        for i in range(7):
+            name = 'some_name_%d' % i
+            comment = 'some_comment_%d' % i
+            section = Section.objects.create(name=name)
+            self.client.post(
+                reverse('usersectionrelation_update', kwargs={'pk': section.pk}),
+                {'progress': '1',
+                 'comment': comment})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_long_name(self):
+        name = 'm' * 1001
+        section1 = Section.objects.create(name=name)
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': 'comment_aigah9Pha4ohyu1see2e'})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_long_notes(self):
+        notes = 'm' * 1001
+        section1 = Section.objects.create(name='name_aF1Ti7ohcahng2ook6Th', notes=notes)
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': 'comment_ush9AhDu5eifeileth8U'})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
+    def test_get_pdf_with_long_comment(self):
+        section1 = Section.objects.create(name='oonie2gaJooShifioho2')
+        comment = 'm' * 1001
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': comment})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
 
 
 class MockExamFormViewTest(TestCase):

@@ -9,12 +9,17 @@ from .models import ExamDate, User
 
 class UserCreationForm(_UserCreationForm):
     """
-    Form for new users in admin.
+    A form that creates a user, with no privileges, from the given username and
+    password.
     """
+    # The method clean_username is just copied as is from
+    # django.contrib.auth.forms.UserCreationForm because we have to patch
+    # the User class in line 101 and 102.
+    # TODO: Refactor this when upgrading to Django >= 1.8
+
     def clean_username(self):
-        # This method is just copied as is from
-        # django.contrib.auth.forms.UserCreationForm because we have to patch
-        # the User class in line 98.
+        # Since User.username is unique, this check is redundant,
+        # but it sets a nicer error message than the ORM. See #13147.
         username = self.cleaned_data["username"]
         try:
             User._default_manager.get(username=username)

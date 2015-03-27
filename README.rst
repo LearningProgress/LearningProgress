@@ -19,9 +19,16 @@ development.
 Run development version
 =======================
 
+*Be sure you have Python 3.3 or higher installed. You also need Python
+header files and a static library for proper compiling the ReportLab PDF
+Library during install.*
+
+*Ubuntu 12.04 is not supported. If you want to use it anyway, try your very
+best.*
+
 ::
 
-    $ python3 --version  # This should return Python 3.x
+    $ python3 --version  # This should return Python 3.3.x or higher
     $ git clone https://github.com/LearningProgress/LearningProgress.git
     $ cd LearningProgress
     $ virtualenv .virtualenv --python=python3
@@ -37,12 +44,13 @@ Requirements
 
 LearningProgress uses
 
-* `Python <https://www.python.org/>`_ 3.x
+* `Python <https://www.python.org/>`_ 3.3.x or higher
 * `Django <https://www.djangoproject.com/>`_ 1.6.x
 * `django-mptt <https://github.com/django-mptt/django-mptt/>`_ 0.6.0
 * `Constance <https://github.com/comoga/django-constance/>`_ 0.6
 * `django-picklefield <https://github.com/gintas/django-picklefield>`_ 0.3.1
 * `Six <http://pythonhosted.org/six/>`_ 1.6.1
+* `Reportlab <http://www.reportlab.com/>`_ 3.1.x
 * `django-bootstrap3 <https://github.com/dyve/django-bootstrap3/>`_ 3.2.x
 * `Bootstrap <http://getbootstrap.com/>`_ 3.1.1
 * `jQuery <https://jquery.com/>`_ 1.11.0

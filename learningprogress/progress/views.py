@@ -1,12 +1,16 @@
 import json
 
-from django.conf import settings
 from django.core.context_processors import csrf
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
-from django.views.generic import DeleteView, FormView, ListView
+from django.utils.translation import ugettext as _
+from django.views.generic import DeleteView, FormView, ListView, View
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from reportlab.platypus import Paragraph, Frame
 
 from . import forms
 from .models import PROGRESS_CHOICES, MockExam, Section, UserSectionRelation
@@ -108,7 +112,6 @@ class UserSectionRelationUpdateView(FormView):
             form = self.get_form(form_class)
             context = self.get_context_data(form=form)
             context.update(csrf(self.request))
-            context['STATIC_URL'] = settings.STATIC_URL
             html = render_to_string('progress/usersectionrelation_form_snippet.html', context)
             html = '<p><button type="button" class="close" aria-hidden="true">&times;</button></p>' + html
             response = self.render_to_json_response({'html': html})
@@ -167,6 +170,92 @@ class UserSectionRelationUpdateView(FormView):
         data = json.dumps(context)
         response_kwargs['content_type'] = 'application/json'
         return HttpResponse(data, **response_kwargs)
+
+
+class UserSectionRelationExportView(View):
+    """
+    View to export all leaf node sections with users progress data and
+    comments as JSON.
+    """
+    def get(self, request, *args, **kwargs):
+        sections = [
+            section.serialize(user=self.request.user)
+            for section in Section.objects.all()
+            if section.is_leaf_node()]
+        return HttpResponse(json.dumps(sections), content_type='application/json')
+        # TODO Use JsonResponse
+        # https://docs.djangoproject.com/en/1.7/ref/request-response/#jsonresponse-objects
+        # TODO use https://docs.djangoproject.com/en/1.7/topics/serialization/ with own Encoder class
+
+
+class PrintNoteCardsView(View):
+    """
+    View to export all user's section comments in a printable format (PDF).
+    """
+    def get_queryset(self):
+        """
+        Returns the queryset with all UserSectionRelation objects that contain
+        a personal comment.
+        """
+        queryset = UserSectionRelation.objects.filter(user=self.request.user)
+        queryset = queryset.exclude(comment='').select_related('section')
+        return queryset
+
+    def get(self, request, *args, **kwargs):
+        """
+        Returns the response containing a reportlab generated PDF.
+        """
+        # Create the HttpResponse object with the appropriate PDF headers.
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename=learningprogress_note_cards.pdf'
+
+        # Create the PDF object, using the response object as its "file".
+        pdf = canvas.Canvas(response)
+        styles = getSampleStyleSheet()
+
+        # Get all cards with their stories.
+        cards = []
+        max_comment_length = 500
+        for usersectionrelation in self.get_queryset():
+            story = []
+            story.append(Paragraph(
+                usersectionrelation.section.name,
+                styles['Heading2']))
+            story.append(Paragraph(
+                usersectionrelation.section.notes,
+                styles['Normal']))
+            if len(usersectionrelation.comment) <= max_comment_length:
+                story.append(Paragraph(
+                    usersectionrelation.comment,
+                    styles['Normal']))
+            else:
+                story.append(Paragraph(
+                    _('Sorry, your comment is too long.'),
+                    styles['Normal']))
+            cards.append(story)
+
+        # Add cards to PDF object.
+        width, height = A4
+        if len(cards) % 2 != 0:
+            cards.append('')
+        while True:
+            for i in range(3):
+                if len(cards) == 0:
+                    break
+                h = height * 2/3 - height * 1/3 * i
+                f1 = Frame(0, h, width/2, height * 1/3, showBoundary=1)
+                f2 = Frame(width/2, h, width/2, height * 1/3, showBoundary=1)
+                f1.addFromList(cards.pop(0), pdf)
+                f2.addFromList(cards.pop(0), pdf)
+            else:
+                pdf.showPage()
+                continue
+            pdf.showPage()
+            break
+
+        # Close the PDF object cleanly and we're done.
+        pdf.save()
+        return response
 
 
 class MockExamFormView(FormView):

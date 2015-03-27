@@ -2,8 +2,6 @@ from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-admin.autodiscover()
-
 
 class HomeView(TemplateView):
     """

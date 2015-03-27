@@ -4,7 +4,7 @@ python:
   - 3.4
 install:
   - pip install -r requirements.txt
-  - pip install coverage==3.7.1 coveralls==0.4.4 flake8==2.2.3
+  - pip install coverage==3.7.1 coveralls==0.5 flake8==2.4.0
 script:
   - coverage run --source=learningprogress manage.py test
   - coverage report --omit=learningprogress/default_settings.py,learningprogress/wsgi.py --fail-under=100

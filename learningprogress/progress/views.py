@@ -1,9 +1,7 @@
-import json
-
 from django.core.context_processors import csrf
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 from django.views.generic import DeleteView, FormView, ListView, View
@@ -165,11 +163,9 @@ class UserSectionRelationUpdateView(FormView):
 
     def render_to_json_response(self, context, **response_kwargs):
         """
-        Returns a HttpResponse object with JSON data for ajax requests.
+        Returns a JsonResponse object for ajax requests.
         """
-        data = json.dumps(context)
-        response_kwargs['content_type'] = 'application/json'
-        return HttpResponse(data, **response_kwargs)
+        return JsonResponse(context, **response_kwargs)
 
 
 class UserSectionRelationExportView(View):
@@ -182,10 +178,7 @@ class UserSectionRelationExportView(View):
             section.serialize(user=self.request.user)
             for section in Section.objects.all()
             if section.is_leaf_node()]
-        return HttpResponse(json.dumps(sections), content_type='application/json')
-        # TODO Use JsonResponse
-        # https://docs.djangoproject.com/en/1.7/ref/request-response/#jsonresponse-objects
-        # TODO use https://docs.djangoproject.com/en/1.7/topics/serialization/ with own Encoder class
+        return JsonResponse(sections, safe=False)
 
 
 class PrintNoteCardsView(View):

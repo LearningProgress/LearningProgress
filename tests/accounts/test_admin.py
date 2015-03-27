@@ -59,7 +59,7 @@ class CreateTest(TestCase):
         user.save()
         response = client.get(reverse('admin:index'))
         self.assertTemplateUsed(response, 'admin/index.html')
-        self.assertContains(response, 'Accounts')
+        self.assertContains(response, 'app-accounts')
 
 
 class ChangeListTest(TestCase):

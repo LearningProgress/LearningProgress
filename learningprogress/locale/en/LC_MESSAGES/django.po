@@ -4,18 +4,22 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 13:54+0200\n"
+"POT-Creation-Date: 2015-03-27 16:14+0100\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: accounts/forms.py:19 accounts/forms.py:24 accounts/models.py:72
+#: accounts/apps.py:7
+msgid "Accounts"
+msgstr ""
+
+#: accounts/forms.py:19 accounts/forms.py:24 accounts/models.py:85
 #, python-format
 msgid "Spring %d"
 msgstr ""
 
-#: accounts/forms.py:20 accounts/forms.py:26 accounts/models.py:74
+#: accounts/forms.py:20 accounts/forms.py:26 accounts/models.py:87
 #, python-format
 msgid "Autumn %d"
 msgstr ""
@@ -44,29 +48,33 @@ msgstr ""
 msgid "Passwords don't match"
 msgstr ""
 
-#: accounts/models.py:16 accounts/models.py:54
+#: accounts/models.py:16 accounts/models.py:67
 msgid ""
 "An integer with five digets. The first four digets represent the year, the "
 "last diget (1 or 2) represents the season."
 msgstr ""
 
-#: accounts/models.py:52
+#: accounts/models.py:56
+msgid "Progress objects"
+msgstr ""
+
+#: accounts/models.py:65
 msgid "Exam key"
 msgstr ""
 
-#: accounts/models.py:57 progress/models.py:107
+#: accounts/models.py:70 progress/models.py:126
 msgid "Date"
 msgstr ""
 
-#: accounts/models.py:58
+#: accounts/models.py:71
 msgid "Choose the first date of the respective exam session."
 msgstr ""
 
-#: accounts/models.py:62
+#: accounts/models.py:75
 msgid "Date of exam"
 msgstr ""
 
-#: accounts/models.py:63
+#: accounts/models.py:76
 msgid "Dates of exam"
 msgstr ""
 
@@ -109,7 +117,7 @@ msgstr ""
 #: accounts/templates/accounts/user_confirm_delete.html:17
 #: accounts/templates/accounts/user_update_form.html:18
 #: progress/templates/progress/mockexam_confirm_delete.html:25
-#: progress/templates/progress/usersectionrelation_form_snippet.html:15
+#: progress/templates/progress/usersectionrelation_form_snippet.html:16
 msgid "Back"
 msgstr ""
 
@@ -232,12 +240,44 @@ msgstr ""
 
 #: accounts/templates/accounts/user_update_form.html:15
 #: progress/templates/progress/mockexam_form.html:40
-#: progress/templates/progress/usersectionrelation_form_snippet.html:14
+#: progress/templates/progress/usersectionrelation_form_snippet.html:15
 msgid "Save"
 msgstr ""
 
 #: accounts/templates/accounts/user_update_form.html:17
 msgid "Delete"
+msgstr ""
+
+#: default_settings.py:78
+msgid "English"
+msgstr ""
+
+#: default_settings.py:79
+msgid "German"
+msgstr ""
+
+#: default_settings.py:120
+msgid "Title of all pages."
+msgstr ""
+
+#: default_settings.py:123
+msgid "Subtitle of all pages."
+msgstr ""
+
+#: default_settings.py:126
+msgid "Header of the home page."
+msgstr ""
+
+#: default_settings.py:129
+msgid "Text of the home page. Full HTML is supported."
+msgstr ""
+
+#: default_settings.py:132
+msgid "Footer of all pages."
+msgstr ""
+
+#: progress/apps.py:7
+msgid "Learning Progress"
 msgstr ""
 
 #: progress/forms.py:12
@@ -248,7 +288,7 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: progress/models.py:15 progress/models.py:80
+#: progress/models.py:15 progress/models.py:99
 msgid "Name"
 msgstr ""
 
@@ -256,11 +296,11 @@ msgstr ""
 msgid "Parent section"
 msgstr ""
 
-#: progress/models.py:24 progress/models.py:83
+#: progress/models.py:24 progress/models.py:102
 msgid "Weight"
 msgstr ""
 
-#: progress/models.py:25 progress/models.py:84
+#: progress/models.py:25 progress/models.py:103
 msgid "Use this for ordering elements."
 msgstr ""
 
@@ -274,7 +314,7 @@ msgid ""
 msgstr ""
 
 #: progress/models.py:33
-#: progress/templates/progress/usersectionrelation_form_snippet.html:6
+#: progress/templates/progress/usersectionrelation_form_snippet.html:7
 msgid "Notes"
 msgstr ""
 
@@ -288,39 +328,39 @@ msgstr ""
 msgid "Sections"
 msgstr ""
 
-#: progress/models.py:50
+#: progress/models.py:69
 msgid "Nothing done"
 msgstr ""
 
-#: progress/models.py:51
+#: progress/models.py:70
 msgid "First look"
 msgstr ""
 
-#: progress/models.py:52
+#: progress/models.py:71
 msgid "Crammed"
 msgstr ""
 
-#: progress/models.py:53
+#: progress/models.py:72
 msgid "All done"
 msgstr ""
 
-#: progress/models.py:68
+#: progress/models.py:87
 msgid "Relation between an user and a section"
 msgstr ""
 
-#: progress/models.py:88
+#: progress/models.py:107
 msgid "Mock exam branch"
 msgstr ""
 
-#: progress/models.py:89
+#: progress/models.py:108
 msgid "Mock exam branches"
 msgstr ""
 
-#: progress/models.py:102
+#: progress/models.py:121
 msgid "Branch"
 msgstr ""
 
-#: progress/models.py:105 progress/templates/progress/mockexam_form.html:28
+#: progress/models.py:124 progress/templates/progress/mockexam_form.html:28
 msgid "Points"
 msgstr ""
 
@@ -384,12 +424,24 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: progress/templates/progress/section_list.html:7
-#: progress/templates/progress/section_list.html:11 templates/home.html:52
+#: progress/templates/progress/section_list.html:8
+#: progress/templates/progress/section_list.html:12 templates/home.html:52
 msgid "My learning progress"
 msgstr ""
 
 #: progress/templates/progress/section_list.html:14
+msgid "Only sections with own comments are printed."
+msgstr ""
+
+#: progress/templates/progress/section_list.html:16
+msgid "Print note cards"
+msgstr ""
+
+#: progress/templates/progress/section_list.html:20
+msgid "Export as JSON"
+msgstr ""
+
+#: progress/templates/progress/section_list.html:25
 #, python-format
 msgid ""
 "\n"
@@ -401,6 +453,14 @@ msgid_plural ""
 "                "
 msgstr[0] ""
 msgstr[1] ""
+
+#: progress/views.py:226
+msgid "Sorry, your comment is too long."
+msgstr ""
+
+#: templates/admin/base_site.html:8
+msgid "Site administration"
+msgstr ""
 
 #: templates/home.html:23
 msgid "Registration and authentication"
@@ -424,8 +484,4 @@ msgstr ""
 
 #: templates/home.html:49 templates/home.html.py:61
 msgid "Home"
-msgstr ""
-
-#: templates/admin/base_site.html:8
-msgid "Site administration"
 msgstr ""

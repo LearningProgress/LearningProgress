@@ -55,7 +55,7 @@ LearningProgress uses
 * `Bootstrap <http://getbootstrap.com/>`_ 3.3.4
 * `jQuery <https://jquery.com/>`_ 1.11.2
 * `jQuery Form Plugin <http://malsup.com/jquery/form/>`_ 3.51
-* `CKEditor <http://ckeditor.com/>`_ 4.3.4
+* `CKEditor <http://ckeditor.com/>`_ 4.4.7
 
 
 License

@@ -1,13 +1,18 @@
 language: python
+sudo: false
+cache:
+  directories:
+    - "$HOME/virtualenv/python$TRAVIS_PYTHON_VERSION/lib/python$TRAVIS_PYTHON_VERSION/site-packages/"
+    - "$HOME/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/"
 python:
-  - 3.3
-  - 3.4
+  - "3.3"
+  - "3.4"
 install:
-  - pip install -r requirements.txt
-  - pip install coverage==3.7.1 coveralls==0.5 flake8==2.4.0
+  - "pip install --upgrade --requirement requirements.txt"
+  - "pip install --upgrade coverage==4.0a5 coveralls==1.0a2 flake8==2.4.0"
 script:
-  - coverage run --source=learningprogress manage.py test
-  - coverage report --omit=learningprogress/default_settings.py,learningprogress/wsgi.py --fail-under=100
-  - flake8 --max-line-length=150 learningprogress tests
+  - "flake8 learningprogress tests"
+  - "coverage run manage.py test"
+  - "coverage report --fail-under=100"
 after_success:
-  - coveralls
+  - "coveralls"

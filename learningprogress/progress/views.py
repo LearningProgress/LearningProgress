@@ -223,7 +223,7 @@ class PrintNoteCardsView(View):
             story.append(Paragraph(
                 usersectionrelation.section.notes,
                 styles['Normal']))
-            if len(comment) <= max_comment_length:
+            if len(str(comment)) <= max_comment_length:
                 story.append(Paragraph(
                     str(comment),
                     styles['Normal']))

@@ -52,6 +52,7 @@ LearningProgress uses
 * `Constance - Dynamic Django settings <https://github.com/jezdez/django-constance/>`_ 1.1.x
 * `django-picklefield <https://github.com/gintas/django-picklefield/>`_ 0.3.2
 * `Reportlab <http://www.reportlab.com/>`_ 3.1.x
+* `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_ 4.4.x
 * `django-bootstrap3 <https://github.com/dyve/django-bootstrap3/>`_ 6.2.x
 * `Bootstrap <http://getbootstrap.com/>`_ 3.3.5
 * `jQuery <https://jquery.com/>`_ 1.11.3

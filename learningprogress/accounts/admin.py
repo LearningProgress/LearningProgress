@@ -15,7 +15,7 @@ class UserAdmin(_UserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('username', 'password1', 'password2', 'email', 'exam')}),)
-    list_display = ('username', 'date_joined', 'last_login', 'is_active', 'is_staff', 'progress_objects')
+    list_display = ('username', 'date_joined', 'last_login', 'is_staff', 'exam', 'progress_objects')
     list_filter = ()
     search_fields = ('username', 'email')
 

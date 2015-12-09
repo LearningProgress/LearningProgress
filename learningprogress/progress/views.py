@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from django.core.context_processors import csrf
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
@@ -210,6 +211,11 @@ class PrintNoteCardsView(View):
         cards = []
         max_comment_length = 500
         for usersectionrelation in self.get_queryset():
+            # Delete attributes from span tags.
+            comment = BeautifulSoup(usersectionrelation.comment, 'html.parser')
+            for tag in comment.find_all('span'):
+                del tag.attrs
+            # Parse the card.
             story = []
             story.append(Paragraph(
                 usersectionrelation.section.name,
@@ -217,9 +223,9 @@ class PrintNoteCardsView(View):
             story.append(Paragraph(
                 usersectionrelation.section.notes,
                 styles['Normal']))
-            if len(usersectionrelation.comment) <= max_comment_length:
+            if len(str(comment)) <= max_comment_length:
                 story.append(Paragraph(
-                    usersectionrelation.comment,
+                    str(comment),
                     styles['Normal']))
             else:
                 story.append(Paragraph(

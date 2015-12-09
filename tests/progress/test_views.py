@@ -245,6 +245,18 @@ class PrintNoteCardsViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['content-type'], 'application/pdf')
 
+    def test_get_pdf_with_span_tags_with_styles_attribute(self):
+        section1 = Section.objects.create(name='iew5TeeGh4OopahpheQu')
+        comment = ('<p><span style="color:red">Some comment</span>\n<span '
+                   'style="color:blue">Some other comment</span></p>')
+        self.client.post(
+            reverse('usersectionrelation_update', kwargs={'pk': section1.pk}),
+            {'progress': '1',
+             'comment': comment})
+        response = self.client.get(reverse('print_note_cards'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['content-type'], 'application/pdf')
+
 
 class MockExamFormViewTest(TestCase):
     """

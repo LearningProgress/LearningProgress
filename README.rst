@@ -35,6 +35,7 @@ builder (virtualenv).*
     $ source .virtualenv/bin/activate
     $ python --version  # This should return Python 3.3.x or higher
     $ pip install --requirement requirements.txt
+    $ pip install psycopg2  # Optional database adapter for PostgreSQL
     $ python manage.py migrate
     $ python manage.py createsuperuser  # Prompts for some input.
     $ python manage.py loaddata extras/example-data-de.json

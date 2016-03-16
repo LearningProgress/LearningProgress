@@ -49,16 +49,16 @@ LearningProgress uses
 
 * `Python <https://www.python.org/>`_ 3.3.x or higher
 * `Django <https://www.djangoproject.com/>`_ 1.8.x
-* `django-mptt <https://github.com/django-mptt/django-mptt/>`_ 0.7.4
+* `django-mptt <https://github.com/django-mptt/django-mptt/>`_ 0.8.3
 * `Constance - Dynamic Django settings <https://github.com/jezdez/django-constance/>`_ 1.1.x
 * `django-picklefield <https://github.com/gintas/django-picklefield/>`_ 0.3.2
 * `Reportlab <http://www.reportlab.com/>`_ 3.1.x
 * `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_ 4.4.x
-* `django-bootstrap3 <https://github.com/dyve/django-bootstrap3/>`_ 6.2.x
-* `Bootstrap <http://getbootstrap.com/>`_ 3.3.5
-* `jQuery <https://jquery.com/>`_ 1.11.3
+* `django-bootstrap3 <https://github.com/dyve/django-bootstrap3/>`_ 7.0.x
+* `Bootstrap <http://getbootstrap.com/>`_ 3.3.6
+* `jQuery <https://jquery.com/>`_ 1.12.1
 * `jQuery Form Plugin <http://malsup.com/jquery/form/>`_ 3.51
-* `CKEditor <http://ckeditor.com/>`_ 4.5.5
+* `CKEditor <http://ckeditor.com/>`_ 4.5.7
 
 
 License

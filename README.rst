@@ -12,8 +12,8 @@
    :target: http://opensource.org/licenses/MIT
 
 LearningProgress is a small server application based on Django for tracking
-individual learning progress on a structured curriculum. It is still under
-development.
+individual learning progress on a structured curriculum. It is currently
+unmaintained.
 
 
 Run development version
@@ -48,17 +48,17 @@ Requirements
 LearningProgress uses
 
 * `Python <https://www.python.org/>`_ 3.3.x or higher
-* `Django <https://www.djangoproject.com/>`_ 1.8.x
-* `django-mptt <https://github.com/django-mptt/django-mptt/>`_ 0.8.3
-* `Constance - Dynamic Django settings <https://github.com/jezdez/django-constance/>`_ 1.1.x
+* `Django <https://www.djangoproject.com/>`_ 1.8.17
+* `django-mptt <https://github.com/django-mptt/django-mptt/>`_ 0.8.7
+* `Constance - Dynamic Django settings <https://github.com/jazzband/django-constance/>`_ 1.3.4
 * `django-picklefield <https://github.com/gintas/django-picklefield/>`_ 0.3.2
-* `Reportlab <http://www.reportlab.com/>`_ 3.1.x
-* `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_ 4.4.x
-* `django-bootstrap3 <https://github.com/dyve/django-bootstrap3/>`_ 7.0.x
-* `Bootstrap <http://getbootstrap.com/>`_ 3.3.6
-* `jQuery <https://jquery.com/>`_ 1.12.1
+* `Reportlab <http://www.reportlab.com/>`_ 3.3.0
+* `Beautiful Soup <https://www.crummy.com/software/BeautifulSoup/>`_ 4.5.3
+* `django-bootstrap3 <https://github.com/dyve/django-bootstrap3/>`_ 8.1.0
+* `Bootstrap <https://getbootstrap.com/>`_ 3.3.7
+* `jQuery <https://jquery.com/>`_ 3.1.1
 * `jQuery Form Plugin <http://malsup.com/jquery/form/>`_ 3.51
-* `CKEditor <http://ckeditor.com/>`_ 4.5.7
+* `CKEditor <http://ckeditor.com/>`_ 4.6.2
 
 
 License
